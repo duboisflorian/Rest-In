@@ -31,7 +31,24 @@ var AllHComponent = (function () {
                 zoom: 11,
                 center: { lat: _this.v.city_lat, lng: _this.v.city_long }
             });
-        }, 100);
+            for (var i = 0; i < _this.v.hotels.length; i++) {
+                _this.marker[i] = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: { lat: _this.v.hotels[i].hotel_lat, lng: _this.v.hotels[i].hotel_long }
+                });
+                _this.marker[i].addListener('click', _this.toggleBounce(i));
+            }
+        }, 150);
+    };
+    AllHComponent.prototype.toggleBounce = function (i) {
+        if (this.marker[i].getAnimation() !== null) {
+            this.marker[i].setAnimation(null);
+        }
+        else {
+            this.marker[i].setAnimation(google.maps.Animation.BOUNCE);
+        }
     };
     AllHComponent = __decorate([
         core_1.Component({

@@ -19,7 +19,13 @@
                 </div>
                 <div class="inner cover">
                     <form (ngSubmit)="goAllH()">
-                        <input [(ngModel)]="search" type="text" name="search" placeholder="Search..  ">
+                        <input [(ngModel)]="search" type="text" list="cities" name="search" placeholder="Search...    ">
+                        <datalist id="cities">
+                            <option *ngFor="#v of cities">
+                                {{v.city_name}}
+                            </option>
+                        </datalist>
+                       
                     </form>
                 </div>
 

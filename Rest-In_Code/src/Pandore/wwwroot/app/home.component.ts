@@ -32,7 +32,7 @@ export class HomeComponent  {
             .take(100).map((x) => x + 1)
             .subscribe((x) => {
                 var y=Math.floor(Math.random() * 5) + 1  
-                this.image = "acc"+ y +".jpg";
+                this.image = "acc" + y + ".jpg";
             });
     }
 
