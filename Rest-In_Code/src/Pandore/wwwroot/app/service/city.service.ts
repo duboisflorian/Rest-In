@@ -16,5 +16,4 @@ export class CityService {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/cities/' + i + '.json')
             .map(data => data.json());
     }
-
 }

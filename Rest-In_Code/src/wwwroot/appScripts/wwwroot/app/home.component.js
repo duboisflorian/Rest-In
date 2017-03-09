@@ -11,12 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var Rx_1 = require('rxjs/Rx');
+var city_service_1 = require('./service/city.service');
+var router_2 = require('angular2/router');
 var HomeComponent = (function () {
-    function HomeComponent(_router) {
+    function HomeComponent(_router, _routeParams, _cityService) {
         this._router = _router;
+        this._routeParams = _routeParams;
+        this._cityService = _cityService;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._cityService.getAll()
+            .subscribe(function (data) { return _this.cities = data; });
         this.image = "acc1.jpg";
         Rx_1.Observable.interval(30000)
             .take(100).map(function (x) { return x + 1; })
@@ -26,7 +32,17 @@ var HomeComponent = (function () {
         });
     };
     HomeComponent.prototype.goAllH = function () {
-        this._router.navigate(['Allh', { id: this.search }]);
+        var found = 0;
+        for (var i = 0; i < this.cities.length; i++) {
+            if (this.cities[i].city_name == this.search) {
+                found += 1;
+                this.c = this.cities[i];
+            }
+        }
+        if (found == 1)
+            this._router.navigate(['Allh', { id: this.c.id }]);
+        else
+            alert("No city found");
     };
     HomeComponent.prototype.goFeature = function () {
         this._router.navigate(['Feature']);
@@ -36,7 +52,7 @@ var HomeComponent = (function () {
             selector: 'my-home',
             templateUrl: 'app/home.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, router_2.RouteParams, city_service_1.CityService])
     ], HomeComponent);
     return HomeComponent;
 }());

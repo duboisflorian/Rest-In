@@ -14,12 +14,13 @@ schema_view = get_schema_view(title='Polls API')
 
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
+
 urlpatterns = [
     url('^schema/$', schema_view),
-    url('^hotels/$', views.HotelList.as_view()),
-    url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail.as_view()),
-    url('^cities/$', views.CityList.as_view()),
-    url('^cities/(?P<pk>[0-9]+)$', views.CityDetail.as_view()),
+    url('^hotels/$', views.HotelList),
+    # url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail.as_view()),
+    url('^cities/$', views.CityList),
+    url('^cities/(?P<pk>[0-9]+)$', views.CityDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 

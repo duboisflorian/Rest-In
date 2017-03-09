@@ -1,6 +1,9 @@
 ﻿import { Component, OnInit } from 'angular2/core';
 import { Router } from 'angular2/router';
 import { Observable, Subscription } from 'rxjs/Rx';
+import { CityService } from './service/city.service';
+import { RouteParams } from 'angular2/router';
+import { City } from './classe/city';
 
 @Component({
     selector: 'my-home',
@@ -10,12 +13,20 @@ export class HomeComponent  {
 
     image: string;
     search: string;
+    cities: City[];
+    c: City;
+    sTimeout: any;
 
 
     constructor(
-        private _router: Router) { }
+        private _router: Router,
+        private _routeParams: RouteParams,
+        private _cityService: CityService) { }
 
     ngOnInit() {
+        this._cityService.getAll()
+            .subscribe(data => this.cities = data);
+
         this.image = "acc1.jpg";
         Observable.interval(30000)
             .take(100).map((x) => x + 1)
@@ -26,7 +37,17 @@ export class HomeComponent  {
     }
 
     goAllH() {
-        this._router.navigate(['Allh', { id: this.search }]);
+        var found = 0;
+        for (var i = 0; i < this.cities.length; i++) {
+            if (this.cities[i].city_name == this.search){
+                found += 1;
+                this.c = this.cities[i];
+            }
+        }
+        if(found == 1)
+            this._router.navigate(['Allh', { id: this.c.id }]);
+        else
+        alert("No city found");
     }
     goFeature() {
         this._router.navigate(['Feature']);

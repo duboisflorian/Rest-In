@@ -17,7 +17,8 @@ import {Headers} from 'angular2/http';
 
 export class AllHComponent {
 
-    v: City;
+    v: City ;
+    sTimeout:any;
 
     constructor(
         private _router: Router,
@@ -26,12 +27,15 @@ export class AllHComponent {
         private _cityService: CityService) { }
 
     ngOnInit() {
-
-        this._cityService.getCity(1)
+        let id = +this._routeParams.get('id');
+        this._cityService.getCity(id)
             .subscribe(data => this.v = data);
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
-            center: { lat: this.v.city_lat, lng: this.v.city_long }
-        });
+        this.sTimeout = setTimeout(() => {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: { lat: this.v.city_lat, lng: this.v.city_long }
+            });
+        }, 100);
+
     }
 }

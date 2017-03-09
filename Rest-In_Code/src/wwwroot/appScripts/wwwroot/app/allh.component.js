@@ -23,12 +23,15 @@ var AllHComponent = (function () {
     }
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._cityService.getCity(1)
+        var id = +this._routeParams.get('id');
+        this._cityService.getCity(id)
             .subscribe(function (data) { return _this.v = data; });
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
-            center: { lat: this.v.city_lat, lng: this.v.city_long }
-        });
+        this.sTimeout = setTimeout(function () {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: { lat: _this.v.city_lat, lng: _this.v.city_long }
+            });
+        }, 100);
     };
     AllHComponent = __decorate([
         core_1.Component({
