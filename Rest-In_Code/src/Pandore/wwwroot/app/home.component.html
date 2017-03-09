@@ -1,0 +1,38 @@
+﻿<body id="animate-area" onload="startTimer()" style="background:url(../fichier/{{image}});background-size:120% 100%"> 
+
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Rest-In</h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="">Home</a></li>
+                                <li><a (click)="goFeature()">Features</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="inner cover">
+                    <form (ngSubmit)="goAllH()">
+                        <input [(ngModel)]="search" type="text" name="search" placeholder="Search..  ">
+                    </form>
+                </div>
+
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Created for <a href="">Rest-In</a> enterprise, by <a href="">@Ting</a> and <a href="">@Eldii</a>.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</body>

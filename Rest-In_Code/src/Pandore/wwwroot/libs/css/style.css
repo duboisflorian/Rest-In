@@ -1,0 +1,266 @@
+/* D�claration */
+/* Utilisation */
+body {
+  background-image: url("../../fichier/fond.jpg");
+  background-attachment: fixed;
+}
+.logo {
+  width: 40px ;
+  height: 50px;
+}
+.portrait {
+  width: 60px ;
+  height: 60px;
+}
+.incone_menu {
+  width: 30px ;
+  height: 30px;
+}
+#form-recherche {
+  margin: 10px auto 10px auto;
+  width: 90%;
+}
+.text-logo,
+.text-logo:hover,
+.text-logo:active {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  font-family: Verdana;
+  font-weight: bold;
+}
+.nom {
+  margin-left: 1em;
+  font-size: 20px;
+}
+.menu {
+  background: rgba(0, 0, 0, 0.9);
+}
+.list-ami {
+  display: block;
+  padding-left: 0;
+}
+.list-ami h1 {
+  margin-top: 0px;
+  margin-bottom: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+.info-user {
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  color: beige;
+}
+.info-user h1 {
+  font-size: 50px;
+}
+.info-user ul {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.nav-button {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.nav-button .selected {
+  background: rgba(255, 255, 255, 0.5);
+}
+.nav-button li {
+  float: left;
+  width: 50%;
+  border-left: 1px solid black;
+}
+.nav-button li span {
+  display: block;
+  float: left;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  color: #DCDCDC;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+}
+.nav-ajouter {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  margin-top: 1px;
+}
+.nav-ajouter a {
+  display: block;
+  float: left;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  color: #DCDCDC;
+  text-decoration: none;
+  text-align: center;
+}
+.nav-ajouter a span {
+  font-size: 24px;
+  color: black;
+}
+.nav-conteur {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  margin-top: 1px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+}
+.nav-conteur span {
+  font-size: 34px;
+  color: black;
+}
+.presentation {
+  color: antiquewhite;
+  text-align: center;
+  margin-top: 200px;
+}
+.nav-list-nom {
+  text-align: center;
+}
+.core {
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 30px auto 65px auto;
+  width: 100%;
+}
+.core_co_in {
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 10% auto 355px auto;
+  width: 330px;
+  height: 400px;
+}
+.core_co_in p {
+  color: antiquewhite;
+  margin-left: 5px;
+}
+.core_co_in a {
+  width: 100%;
+  text-align: center;
+}
+.core_co_in form {
+  max-width: 330px;
+  margin: 30px;
+}
+.core_co_in form input,
+.core_co_in form button {
+  margin-top: 10px ;
+}
+.form_co {
+  padding-top: 70px;
+  padding-bottom: 65px;
+}
+.choix-theme {
+  text-align: center;
+  margin: 20px auto 20px auto;
+}
+.choix-theme h1 {
+  color: beige;
+}
+.jouer {
+  text-align: center;
+}
+.jouer h1 {
+  color: beige;
+}
+.jouer #countdown {
+  font-size: 24px;
+  color: beige;
+  margin: 10px auto 10px auto;
+}
+.jouer #gauche {
+  float: left;
+  margin-left: 50px;
+}
+.jouer #droite {
+  float: right;
+  margin-right: 50px;
+}
+.jouer form #form-recherche {
+  margin-top: 400px;
+  width: 200px;
+}
+.profile {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.profile h1,
+.profile h2 {
+  color: beige;
+}
+.profile #modif-photo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.profile .modif-info,
+.profile .favori,
+.profile .stat {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 350px;
+}
+.profile .modif-info p,
+.profile .favori p,
+.profile .stat p {
+  margin: 10px auto 10px auto;
+  font-family: Onyx;
+  font-size: 34px;
+}
+.image-theme {
+  margin: 5px 5px 5px 5px;
+  width: 250px ;
+  height: 200px;
+}
+.theme {
+  width: 50%;
+  display: inline;
+}
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #595757;
+}
+.sidebar {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  height: 710px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.nav-sidebar {
+  margin-right: -20px;
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar li {
+  padding: 5px 20px 5px 20px;
+}
+.nav-sidebar li span {
+  font-size: 20px;
+  color: black;
+  margin-left: 10px;
+}
+.nav-sidebar .active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.nav-sidebar > li:hover {
+  background-color: lightgray;
+}
+footer {
+  background: rgba(0, 0, 0, 0.9);
+  padding-left: 20px;
+  color: white;
+  font-family: "Proxima Nova Semibold";
+  font-size: 13px;
+  text-align: center;
+  position: relative;
+  clear: both;
+  margin-top: -32px;
+  height: 40px;
+}

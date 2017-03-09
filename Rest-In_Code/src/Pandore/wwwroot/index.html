@@ -1,0 +1,99 @@
+<html>
+<head>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <title>Rest-In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/fichier/logo.png" />
+    <link rel="stylesheet" href="libs/css/style.css">
+    <link href="libs/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- IE required polyfills, in this exact order -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+    <script src="https://npmcdn.com/angular2@2.0.0-beta.13/es6/dev/src/testing/shims_for_IE.js"></script>
+
+    <script src="https://code.angularjs.org/2.0.0-beta.13/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://npmcdn.com/typescript@1.8.9/lib/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.13/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.13/angular2.dev.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.13/router.dev.js"></script>
+    <script src="https://npmcdn.com/a2-in-memory-web-api/web-api.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.0/http.dev.js"></script>
+    <script src="http://gc.kis.scr.kaspersky-labs.com/01708303-F2AB-9643-BF30-7C923FED5859/main.js" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK4RqR6DiGo_RktVux-lNX1uKNyJ2XjyE" async defer></script>
+     <script>
+      System.config({
+        transpiler: 'typescript',
+        typescriptOptions: { emitDecoratorMetadata: true },
+        packages: {'app': {defaultExtension: 'ts'}}
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="libs/jquery.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="./libs/css/Cover Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./libs/css/Cover Template for Bootstrap_files/cover.css" rel="stylesheet">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+
+
+    <style type="text/css">
+        @keyframes animatedBackground {
+            from {
+                background-position: 20% 15%;
+            }
+
+            to {
+                background-position: 80% 15%;
+            }
+        }
+
+        #animate-area {
+            background:center fixed;
+            background-position: 0px 0px;
+            background-repeat: no-repeat;
+            animation: animatedBackground 10s linear infinite alternate;
+        }
+    </style>
+    <style>
+        input[type=text] {
+            width: 130px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-image: url('searchicon.png');
+            background-position: 10% 10%;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+            input[type=text]:focus {
+                width: 100%;
+            }
+                  #map {
+        height: 100%;
+         width: 100%;
+      }
+    </style>
+
+</head>
+
+
+    <my-app>Loading...</my-app>
+
+
+</html>
