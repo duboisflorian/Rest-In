@@ -15,6 +15,7 @@ var hotel_service_1 = require('./service/hotel.service');
 var city_service_1 = require('./service/city.service');
 var router_2 = require('angular2/router');
 var AllHComponent = (function () {
+    // marker: any[];
     function AllHComponent(_router, _hotelService, _routeParams, _cityService) {
         this._router = _router;
         this._hotelService = _hotelService;
@@ -31,24 +32,16 @@ var AllHComponent = (function () {
                 zoom: 11,
                 center: { lat: _this.v.city_lat, lng: _this.v.city_long }
             });
-            for (var i = 0; i < _this.v.hotels.length; i++) {
-                _this.marker[i] = new google.maps.Marker({
+            for (var i = 0, a = 1; i < _this.v.hotels.length; i++, a++) {
+                var marker = new google.maps.Marker({
                     map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: { lat: _this.v.hotels[i].hotel_lat, lng: _this.v.hotels[i].hotel_long }
+                    position: { lat: _this.v.hotels[i].hotel_lat, lng: _this.v.hotels[i].hotel_long },
+                    title: _this.v.hotels[i].hotel_name
                 });
-                _this.marker[i].addListener('click', _this.toggleBounce(i));
+                marker.setMap(map);
+                alert(_this.v.hotels[i].hotel_name);
             }
         }, 150);
-    };
-    AllHComponent.prototype.toggleBounce = function (i) {
-        if (this.marker[i].getAnimation() !== null) {
-            this.marker[i].setAnimation(null);
-        }
-        else {
-            this.marker[i].setAnimation(google.maps.Animation.BOUNCE);
-        }
     };
     AllHComponent = __decorate([
         core_1.Component({

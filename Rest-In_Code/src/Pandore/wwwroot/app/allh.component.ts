@@ -19,7 +19,7 @@ export class AllHComponent {
 
     v: City ;
     sTimeout: any;
-    marker: any[];
+   // marker: any[];
 
     constructor(
         private _router: Router,
@@ -37,25 +37,17 @@ export class AllHComponent {
                 center: { lat: this.v.city_lat, lng: this.v.city_long }
                 //center: { lat: 48.855808, lng: 2.357699 }
             });
-            for (var i = 0; i < this.v.hotels.length; i++) {
-                this.marker[i] = new google.maps.Marker({
+            for (var i = 0 , a =1; i < this.v.hotels.length; i++ , a++) {
+                var marker = new google.maps.Marker({
                     map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: { lat: this.v.hotels[i].hotel_lat, lng: this.v.hotels[i].hotel_long }
+                    position: { lat: this.v.hotels[i].hotel_lat, lng: this.v.hotels[i].hotel_long },
+                    title: this.v.hotels[i].hotel_name
                 });
-                this.marker[i].addListener('click', this.toggleBounce(i));
+                marker.setMap(map);
             }
 
         }, 150);
 
     }
 
-    toggleBounce(i:number) {
-    if (this.marker[i].getAnimation() !== null) {
-        this.marker[i].setAnimation(null);
-    } else {
-        this.marker[i].setAnimation(google.maps.Animation.BOUNCE);
-    }
-}
 }
