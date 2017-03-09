@@ -12,5 +12,7 @@ class Hotel(models.Model):
     hotel_name = models.CharField(max_length=200)
     hotel_lat = models.FloatField(default=0)
     hotel_long = models.FloatField(default=0)
+    adresse = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
     def __str__(self):
         return self.hotel_name

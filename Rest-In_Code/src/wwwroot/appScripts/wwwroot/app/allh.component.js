@@ -15,7 +15,6 @@ var hotel_service_1 = require('./service/hotel.service');
 var city_service_1 = require('./service/city.service');
 var router_2 = require('angular2/router');
 var AllHComponent = (function () {
-    // marker: any[];
     function AllHComponent(_router, _hotelService, _routeParams, _cityService) {
         this._router = _router;
         this._hotelService = _hotelService;
@@ -29,17 +28,38 @@ var AllHComponent = (function () {
             .subscribe(function (data) { return _this.v = data; });
         this.sTimeout = setTimeout(function () {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
+                zoom: 13,
                 center: { lat: _this.v.city_lat, lng: _this.v.city_long }
             });
-            for (var i = 0, a = 1; i < _this.v.hotels.length; i++, a++) {
-                var marker = new google.maps.Marker({
+            /* for (var i = 0, a = 1; i < this.v.hotels.length; i++ , a++) {
+                 this.marker[a] = new google.maps.Marker({
+                     map: map,
+                     draggable: true,
+                     animation: google.maps.Animation.DROP,
+                     position: { lat: this.v.hotels[i].hotel_lat, lng: this.v.hotels[i].hotel_long },
+                     title: this.v.hotels[i].hotel_name
+                 });
+ 
+                  this.infowindow[a] = new google.maps.InfoWindow({
+                     content: this.v.hotels[i].hotel_name
+                 });
+ 
+                this.marker[a].addListener('click', function () {
+                    this.infowindow[a].open(map, this.marker[a]);
+                 });
+             }*/
+            var markers = [];
+            var infos = [];
+            for (var i = 0; i < _this.v.hotels.length; i++) {
+                var pos = new google.maps.LatLng(_this.v.hotels[i].hotel_lat, _this.v.hotels[i].hotel_long);
+                markers[i] = new google.maps.Marker({
+                    position: pos,
                     map: map,
-                    position: { lat: _this.v.hotels[i].hotel_lat, lng: _this.v.hotels[i].hotel_long },
-                    title: _this.v.hotels[i].hotel_name
                 });
-                marker.setMap(map);
-                alert(_this.v.hotels[i].hotel_name);
+                infos[i] = new google.maps.InfoWindow({
+                    content: _this.v.hotels[i].hotel_name
+                });
+                infos[i].open(map, markers[i]);
             }
         }, 150);
     };

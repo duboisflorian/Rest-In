@@ -18,7 +18,7 @@ schema_view = get_schema_view(title='Polls API')
 urlpatterns = [
     url('^schema/$', schema_view),
     url('^hotels/$', views.HotelList),
-    # url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail.as_view()),
+    url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail),
     url('^cities/$', views.CityList),
     url('^cities/(?P<pk>[0-9]+)$', views.CityDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))

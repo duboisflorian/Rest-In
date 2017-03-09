@@ -77,3 +77,27 @@ def CityDetail(request, pk,format=None):
         city.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET', 'PUT', 'DELETE'])
+def HotelDetail(request, pk,format=None):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    try:
+        hotel = Hotel.objects.get(pk=pk)
+    except Hotel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = HotelSerializer(hotel)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = HotelSerializer(hotel, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        hotel.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
