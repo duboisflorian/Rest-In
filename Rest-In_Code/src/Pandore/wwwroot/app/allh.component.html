@@ -1,15 +1,20 @@
 ﻿<body>
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-6">
                 <div id="map"></div>
             </div>
             <div class="col-md-6">
                 <br />
                 <div class="jumbotron">
-                    <h1>"Nom de l'hotel"</h1>
-                    <div *ngFor="#v of v.hotels">{{v.id}}</div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="http://www.hotel-victoria-chatelet.com/media/img/home/vignette3.jpg" alt="hotels">
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-md-9"><h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p></div>
+                    </div>
                     <p><a class="btn btn-primary btn-lg" href="#" role="button">Réserver votre hotel !</a></p>
                 </div>
             </div>

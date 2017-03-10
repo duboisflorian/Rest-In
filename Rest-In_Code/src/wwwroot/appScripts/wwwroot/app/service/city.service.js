@@ -22,6 +22,14 @@ var CityService = (function () {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/cities/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
+    CityService.prototype.getAllH = function () {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh.json')
+            .map(function (data) { return data.json(); });
+    };
+    CityService.prototype.getCityH = function (i) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh/' + i + '.json')
+            .map(function (data) { return data.json(); });
+    };
     CityService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

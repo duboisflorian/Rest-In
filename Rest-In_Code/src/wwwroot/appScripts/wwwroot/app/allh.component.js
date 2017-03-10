@@ -20,34 +20,18 @@ var AllHComponent = (function () {
         this._hotelService = _hotelService;
         this._routeParams = _routeParams;
         this._cityService = _cityService;
+        this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
     }
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
         var id = +this._routeParams.get('id');
-        this._cityService.getCity(id)
+        this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
         this.sTimeout = setTimeout(function () {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
                 center: { lat: _this.v.city_lat, lng: _this.v.city_long }
             });
-            /* for (var i = 0, a = 1; i < this.v.hotels.length; i++ , a++) {
-                 this.marker[a] = new google.maps.Marker({
-                     map: map,
-                     draggable: true,
-                     animation: google.maps.Animation.DROP,
-                     position: { lat: this.v.hotels[i].hotel_lat, lng: this.v.hotels[i].hotel_long },
-                     title: this.v.hotels[i].hotel_name
-                 });
- 
-                  this.infowindow[a] = new google.maps.InfoWindow({
-                     content: this.v.hotels[i].hotel_name
-                 });
- 
-                this.marker[a].addListener('click', function () {
-                    this.infowindow[a].open(map, this.marker[a]);
-                 });
-             }*/
             var markers = [];
             var infos = [];
             for (var i = 0; i < _this.v.hotels.length; i++) {
