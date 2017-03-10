@@ -21,6 +21,8 @@ urlpatterns = [
     url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail),
     url('^cities/$', views.CityList),
     url('^cities/(?P<pk>[0-9]+)$', views.CityDetail),
+    url('^roomtypes/$', views.RoomTypeList),
+    url('^roomtypes/(?P<pk>[0-9]+)$', views.RoomTypeDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
