@@ -34,25 +34,7 @@ export class AllHComponent {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
                 center: { lat: this.v.city_lat, lng: this.v.city_long }
-                //center: { lat: 48.855808, lng: 2.357699 }
             });
-           /* for (var i = 0, a = 1; i < this.v.hotels.length; i++ , a++) {
-                this.marker[a] = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: { lat: this.v.hotels[i].hotel_lat, lng: this.v.hotels[i].hotel_long },
-                    title: this.v.hotels[i].hotel_name
-                });
-
-                 this.infowindow[a] = new google.maps.InfoWindow({
-                    content: this.v.hotels[i].hotel_name
-                });
-
-               this.marker[a].addListener('click', function () {
-                   this.infowindow[a].open(map, this.marker[a]);
-                });
-            }*/
             var markers = [];
             var infos = [];
             for (var i = 0; i < this.v.hotels.length; i++) {
@@ -68,9 +50,6 @@ export class AllHComponent {
                 });
 
                 infos[i].open(map, markers[i]);
-                /*google.maps.event.addListener(markers[i], 'click', function () {
-                    infos[i].open(map, markers[i]);
-                })*/
             }
 
         }, 150);

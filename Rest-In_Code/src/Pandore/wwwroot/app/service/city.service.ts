@@ -16,4 +16,14 @@ export class CityService {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/cities/' + i + '.json')
             .map(data => data.json());
     }
+
+    getAllH() {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh.json')
+            .map(data => data.json());
+    }
+
+    getCityH(i: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh/' + i + '.json')
+            .map(data => data.json());
+    }
 }
