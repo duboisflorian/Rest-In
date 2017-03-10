@@ -16,13 +16,13 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = '__all__'
 
-# class CityHSerializer(serializers.ModelSerializer):
-#     hotels = HotelSerializer(
-#         read_only=True,
-#         many=True,
-#     )
-#     class Meta:
-#         model = City
-#         fields = '__all__'
+class CityHSerializer(serializers.ModelSerializer):
+    hotels = HotelSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = City
+        fields = '__all__'
 
 
