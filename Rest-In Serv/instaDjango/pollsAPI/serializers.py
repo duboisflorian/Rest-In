@@ -11,6 +11,15 @@ class HotelSerializer(serializers.ModelSerializer):
         model = Hotel
         fields = '__all__'
 
+class HotelRTSerializer(serializers.ModelSerializer):
+    roomtypes = RoomTypeSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = Hotel
+        fields = '__all__'
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City

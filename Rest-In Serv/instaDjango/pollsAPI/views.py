@@ -1,5 +1,5 @@
 from pollsAPI.models import Hotel , City , RoomType , Room , RoomR, RoomD, RoomImage
-from pollsAPI.serializers import HotelSerializer , CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
+from pollsAPI.serializers import HotelSerializer , HotelRTSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
 from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
 from rest_framework import status
@@ -45,6 +45,21 @@ def HotelList(request, format=None):
 
     elif request.method == 'POST':
         serializer = HotelSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def HotelRTList(request, format=None):
+
+    if request.method == 'GET':
+        hotels = Hotel.objects.all()
+        serializer = HotelRTSerializer(hotels, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = HotelRTSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -166,6 +181,31 @@ def HotelDetail(request, pk,format=None):
 
     elif request.method == 'PUT':
         serializer = HotelSerializer(hotel, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        hotel.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def HotelRTDetail(request, pk,format=None):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    try:
+        hotel = Hotel.objects.get(pk=pk)
+    except Hotel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = HotelRTSerializer(hotel)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = HotelRTSerializer(hotel, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

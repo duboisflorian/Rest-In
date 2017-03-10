@@ -19,6 +19,8 @@ urlpatterns = [
     url('^schema/$', schema_view),
     url('^hotels/$', views.HotelList),
     url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail),
+    url('^hotels_roomtypes/$', views.HotelRTList),
+    url('^hotels_roomtypes/(?P<pk>[0-9]+)$', views.HotelRTDetail),
     url('^cities/$', views.CityList),
     url('^cities/(?P<pk>[0-9]+)$', views.CityDetail),
     url('^citiesh/$', views.CityHList),
