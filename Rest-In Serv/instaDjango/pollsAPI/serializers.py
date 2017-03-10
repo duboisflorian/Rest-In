@@ -16,6 +16,26 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = '__all__'
 
+class RoomImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomImage
+        fields = '__all__'
+
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = '__all__'
+
+class RoomRSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomR
+        fields = '__all__'
+
+class RoomDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomD
+        fields = '__all__'
+
 class CityHSerializer(serializers.ModelSerializer):
     hotels = HotelSerializer(
         read_only=True,
@@ -24,5 +44,4 @@ class CityHSerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = '__all__'
-
 

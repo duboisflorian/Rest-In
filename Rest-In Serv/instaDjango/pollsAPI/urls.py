@@ -25,6 +25,14 @@ urlpatterns = [
     url('^citiesh/(?P<pk>[0-9]+)$', views.CityHDetail),
     url('^roomtypes/$', views.RoomTypeList),
     url('^roomtypes/(?P<pk>[0-9]+)$', views.RoomTypeDetail),
+    url('^room/$', views.RoomList),
+    url('^room/(?P<pk>[0-9]+)$', views.RoomDetail),
+    url('^roomR/$', views.RoomRList),
+    url('^roomR/(?P<pk>[0-9]+)$', views.RoomRDetail),
+    url('^roomD/$', views.RoomDList),
+    url('^roomD/(?P<pk>[0-9]+)$', views.RoomDDetail),
+    url('^roomimages/$', views.RoomImagesList),
+    url('^roomimages/(?P<pk>[0-9]+)$', views.RoomImagesDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
