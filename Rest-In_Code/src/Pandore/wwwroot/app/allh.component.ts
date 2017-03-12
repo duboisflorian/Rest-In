@@ -17,14 +17,24 @@ import {Headers} from 'angular2/http';
 
 export class AllHComponent {
 
-    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars":0 , "city": 1 }], "city_name": "", "city_lat":0 , "city_long":0 };
+    v: City;
     sTimeout: any;
 
     constructor(
         private _router: Router,
         private _hotelService: HotelService,
         private _routeParams: RouteParams,
-        private _cityService: CityService) { }
+        private _cityService: CityService) { this.initialiseCity(); }
+
+    initialiseCity() {
+        let id = +this._routeParams.get('id');
+        this._cityService.getCityH(id)
+            .subscribe(data => this.v = data);
+    }
+
+    onClickMe() {
+        this._router.navigate(['Allh', { cities: this.v }]);
+    }
 
     ngOnInit() {
         let id = +this._routeParams.get('id');

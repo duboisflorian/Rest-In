@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import { HomeComponent } from './home.component';
 import { AllHComponent } from './allh.component';
 import { FeatureComponent } from './feature.component';
+import { HotelComponent } from './hotel.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import { HotelService } from './service/hotel.service';
 import { CityService } from './service/city.service';
@@ -38,6 +39,11 @@ import { CityService } from './service/city.service';
             path: '/feature',
             name: 'Feature',
             component: FeatureComponent
+        },
+        {
+            path: '/hotel',
+            name: 'Hotel',
+            component: HotelComponent
         }
 ])
 export class AppComponent {
