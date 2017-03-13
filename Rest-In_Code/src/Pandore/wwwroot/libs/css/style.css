@@ -17,9 +17,10 @@
             animation: animatedBackground 10s linear infinite alternate;
         }
             #map {
-        height: 100%;
-         width: 100%;
-      }
+                padding-right: 100px;
+                height:600px;
+                width: 300px;
+            }
                     input[type=text] {
 
             width: 300px;

@@ -22,46 +22,23 @@
                         </div>
 
                         <div class="col-md-6" style="position: fixed;overflow-y: scroll;top: 10%;bottom: 5%;right: 0;">
-                            <br />
-                            <div class="row bloc">
-                                <div class="col-xs-6 col-md-4">
-                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                                </div>
-                                <div class="col-xs-6 col-md-8">
-                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                                </div>
-                            </div>
-                            <div class="row bloc">
-                                <div class="col-xs-6 col-md-4">
-                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                                </div>
-                                <div class="col-xs-6 col-md-8">
-                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+                            <div *ngIf="detailshotel == false">
+                                <br />
+                                <div class="row bloc" *ngFor="#v of v.hotels">
+                                    <div class="col-xs-6 col-md-4">
+                                        <img src="{{v.image}}" alt="hotels" width="200" height="200">
+                                    </div>
+                                    <div class="col-xs-6 col-md-8">
+                                        <h2>{{v.hotel_name}}</h2><br /><p>{{v.hotel_desc}}</p>
+                                        <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Plus d'informations</button></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row bloc">
-                                <div class="col-xs-6 col-md-4">
-                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                                </div>
-                                <div class="col-xs-6 col-md-8">
-                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotelsss est le meilleur hotel qui existe en ce moment même.</p>
-                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                                </div>
-                            </div>
-                            <div class="row bloc">
-                                <div class="col-xs-6 col-md-4">
-                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                                </div>
-                                <div class="col-xs-6 col-md-8">
-                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                                </div>
+                            <div *ngIf="detailshotel == true">
+                                test
                             </div>
                         </div>
-                    </div>
-
+                        </div>
                 </div>
             </div>
         </div>

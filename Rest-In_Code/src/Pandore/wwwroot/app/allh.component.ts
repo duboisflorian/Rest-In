@@ -18,6 +18,7 @@ import {Headers} from 'angular2/http';
 export class AllHComponent {
 
     v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+    detailshotel: boolean;
     sTimeout: any;
     image: string;
 
@@ -25,24 +26,29 @@ export class AllHComponent {
         private _router: Router,
         private _hotelService: HotelService,
         private _routeParams: RouteParams,
-        private _cityService: CityService) { this.initialiseCity(); }
-
-    initialiseCity() {
-        let id = +this._routeParams.get('id');
-        this._cityService.getCityH(id)
-            .subscribe(data => this.v = data);
-    }
+        private _cityService: CityService) { }
 
     onClickMe() {
-        this._router.navigate(['Allh', { cities: this.v }]);
+        this.detailshotel = true;
     }
     gotoCo() {
         this._router.navigate(['Co']);
     }
+    
     ngOnInit() {
+        this.detailshotel = false;
         let id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(data => this.v = data);
+        function markerMap(hotel_name: string) {
+            return '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<div id="bodyContent"><font color="black">' +
+                hotel_name +
+                '</font></div>' +
+                '</div>';
+        }
         this.sTimeout = setTimeout(() => {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
@@ -59,7 +65,7 @@ export class AllHComponent {
                 });
 
                 infos[i] = new google.maps.InfoWindow({
-                    content: this.v.hotels[i].hotel_name
+                    content: markerMap(this.v.hotels[i].hotel_name)
                 });
 
                 infos[i].open(map, markers[i]);

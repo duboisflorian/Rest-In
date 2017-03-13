@@ -22,22 +22,16 @@ var AllHComponent = (function () {
         this._routeParams = _routeParams;
         this._cityService = _cityService;
         this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
-        this.initialiseCity();
     }
-    AllHComponent.prototype.initialiseCity = function () {
-        var _this = this;
-        var id = +this._routeParams.get('id');
-        this._cityService.getCityH(id)
-            .subscribe(function (data) { return _this.v = data; });
-    };
     AllHComponent.prototype.onClickMe = function () {
-        this._router.navigate(['Allh', { cities: this.v }]);
+        this.detailshotel = true;
     };
     AllHComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.detailshotel = false;
         var id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
