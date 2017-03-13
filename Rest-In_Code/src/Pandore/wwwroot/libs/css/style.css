@@ -1,9 +1,6 @@
 /* D�claration */
 /* Utilisation */
-body {
-  background-image: url("../../fichier/fond.jpg");
-  background-attachment: fixed;
-}
+
 .logo {
   width: 40px ;
   height: 50px;
@@ -264,13 +261,12 @@ footer {
   margin-top: -32px;
   height: 40px;
 }
-
-.bloc{
-    width: 100%; 
-    margin: auto; 
-    border: 1px solid black;
-    text-align: justify;
-    padding: 12px;
-    margin-bottom: 20px;
-    background-color: rgba(245, 245, 245, 0.5);
-}
+.bloc{ 
+    width: 100%;  
+    margin: auto;  
+    border: 1px solid black; 
+    text-align: justify; 
+    padding: 12px; 
+    margin-bottom: 20px; 
+    background-color: rgba(245, 245, 245, 0.5); 
+} 

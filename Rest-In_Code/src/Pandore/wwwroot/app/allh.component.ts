@@ -17,7 +17,7 @@ import {Headers} from 'angular2/http';
 
 export class AllHComponent {
 
-    v: City;
+    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
     sTimeout: any;
 
     constructor(

@@ -20,6 +20,7 @@ var AllHComponent = (function () {
         this._hotelService = _hotelService;
         this._routeParams = _routeParams;
         this._cityService = _cityService;
+        this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
         this.initialiseCity();
     }
     AllHComponent.prototype.initialiseCity = function () {
