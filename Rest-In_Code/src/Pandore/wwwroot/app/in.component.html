@@ -1,0 +1,17 @@
+﻿<body id="animate-area" onload="startTimer()" style="background:url(../fichier/{{image}});background-size:120% 100%">
+    <a class="navbar-brand menu" (click)="gotoHome()" style="padding-top:0; padding-bottom:0;"> <img class="logo" style="display:inline;" src="fichier/logo.png" /> <span style="display:inline;" class="text-logo">Find My Name</span></a>
+    <form (ngSubmit)="inscription()">
+        <h2 style="color:antiquewhite;" class="form-signin-heading">Inscrivez-vous :</h2>
+        <label for="inputEmail" class="sr-only">Pseudo</label>
+        <input id="inputEmail" [(ngModel)]="name" class="form-control" placeholder="Pseudo" required="" type="text">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input id="inputEmail" [(ngModel)]="mail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input id="inputPassword" [(ngModel)]="password" class="form-control" placeholder="Password" required="" type="password">
+        <label for="inputPassword" class="sr-only">Confirme Password</label>
+        <input id="inputPassword" [(ngModel)]="confirmPasword" class="form-control" placeholder="Confirme Password" required="" type="password">
+        <br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+    <p (click)="gotoCo()">Vous avez déjà un compte ? Connectez-vous ici</p>
+</body>

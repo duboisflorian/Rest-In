@@ -11,15 +11,16 @@
                         <h3 class="masthead-brand">Rest-In</h3>
                         <nav>
                             <ul class="nav masthead-nav">
-                                <li class="active"><a href="">Home</a></li>
-                                <li><a (click)="goFeature()">Features</a></li>
+                                <li class="active"><a href="">Accueil</a></li>
+                                <li><a (click)="goFeature()">Informations</a></li>
+                                <li><a >Se connecter</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="inner cover">
                     <form (ngSubmit)="goAllH()">
-                        <input [(ngModel)]="search" type="text" list="cities" name="search" placeholder="Search...    ">
+                        <input [(ngModel)]="search" type="text" list="cities" name="search" placeholder="Rechercher...    ">
                         <datalist id="cities">
                             <option *ngFor="#v of cities">
                                 {{v.city_name}}
