@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from pollsAPI.models import Hotel, City, RoomType, Room, RoomD, RoomImage, RoomR, User
 
+class RoomImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomImage
+        fields = '__all__'
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -10,6 +15,16 @@ class RoomTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoomType
         fields = '__all__'
+
+class RoomTypeImagesSerializer(serializers.ModelSerializer):
+    images = RoomImageSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = RoomType
+        fields = '__all__'
+
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,10 +45,7 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = '__all__'
 
-class RoomImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RoomImage
-        fields = '__all__'
+
 
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
