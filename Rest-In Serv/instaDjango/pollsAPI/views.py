@@ -408,10 +408,10 @@ def UserDetail(request, pk,format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def UserAuth(request, pk, format=None):
+def UserAuth(request, pk,pr, format=None):
 
     try:
-        u = User.objects.get(name=pk)
+        u = User.objects.get(mail=pk,password=pr)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
