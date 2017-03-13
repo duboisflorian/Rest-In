@@ -8,6 +8,7 @@ import { FeatureComponent } from './feature.component';
 import { HotelComponent } from './hotel.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import { HotelService } from './service/hotel.service';
+import { Auth } from './service/auth.service';
 import { CityService } from './service/city.service';
 import { UtilisateurService } from './service/utilisateur.service';
 
@@ -22,6 +23,7 @@ import { UtilisateurService } from './service/utilisateur.service';
         HTTP_PROVIDERS,
         CityService,
         UtilisateurService,
+        Auth,
         HotelService
     ]
 })

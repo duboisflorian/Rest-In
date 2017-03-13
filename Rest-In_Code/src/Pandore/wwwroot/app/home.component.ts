@@ -3,6 +3,8 @@ import { Router } from 'angular2/router';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { CityService } from './service/city.service';
 import { RouteParams } from 'angular2/router';
+import { UtilisateurService } from './service/utilisateur.service';
+import { Utilisateur } from './classe/utilisateur';
 import { City } from './classe/city';
 
 @Component({
@@ -16,6 +18,9 @@ export class HomeComponent  {
     cities: City[];
     c: City;
     sTimeout: any;
+    utilisateur: Utilisateur;
+    us: number = 0;
+
 
 
     constructor(
@@ -24,6 +29,7 @@ export class HomeComponent  {
         private _cityService: CityService) { }
 
     ngOnInit() {
+         this.us = +this._routeParams.get('us');
         this._cityService.getAll()
             .subscribe(data => this.cities = data);
 
@@ -54,6 +60,9 @@ export class HomeComponent  {
     }
     gotoCo() {
         this._router.navigate(['Co']);
+    }
+    goHome() {
+        this._router.navigate(['Home']);
     }
 }
 

@@ -35,6 +35,15 @@ var AllHComponent = (function () {
         var id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
+        function markerMap(hotel_name) {
+            return '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<div id="bodyContent"><font color="black">' +
+                hotel_name +
+                '</font></div>' +
+                '</div>';
+        }
         this.sTimeout = setTimeout(function () {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
@@ -49,7 +58,7 @@ var AllHComponent = (function () {
                     map: map,
                 });
                 infos[i] = new google.maps.InfoWindow({
-                    content: _this.v.hotels[i].hotel_name
+                    content: markerMap(_this.v.hotels[i].hotel_name)
                 });
                 infos[i].open(map, markers[i]);
             }

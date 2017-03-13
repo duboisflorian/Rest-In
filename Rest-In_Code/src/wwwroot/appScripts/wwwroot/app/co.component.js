@@ -31,6 +31,18 @@ var CoComponent = (function () {
         this._router.navigate(['Home']);
     };
     CoComponent.prototype.connexion = function () {
+        var _this = this;
+        this._uService.verificationConnexion(this.mail, this.password).subscribe(function (data) { return _this.utilisateur = data; });
+        this.sTimeout = setTimeout(function () {
+            if (_this.utilisateur) {
+                _this._router.navigate(['Home', { us: _this.utilisateur.id }]);
+            }
+            else {
+                alert("Le mot de passe ou l'e-mail n'existe pas.");
+                _this.mail = "";
+                _this.password = "";
+            }
+        }, 600);
     };
     CoComponent.prototype.gotoIn = function () {
         this._router.navigate(['In']);

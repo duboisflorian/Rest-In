@@ -9,6 +9,9 @@ export class UtilisateurService {
     constructor(
         private http: Http) { }
 
-  
+    verificationConnexion(mail: string, password: string) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/usersauth/' + mail + '/' + password)
+            .map(data => data.json());
+    }
 
 }

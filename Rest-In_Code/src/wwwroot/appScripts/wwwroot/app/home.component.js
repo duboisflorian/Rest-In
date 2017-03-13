@@ -18,9 +18,11 @@ var HomeComponent = (function () {
         this._router = _router;
         this._routeParams = _routeParams;
         this._cityService = _cityService;
+        this.us = 0;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.us = +this._routeParams.get('us');
         this._cityService.getAll()
             .subscribe(function (data) { return _this.cities = data; });
         this.image = "acc1.jpg";
@@ -49,6 +51,9 @@ var HomeComponent = (function () {
     };
     HomeComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);
+    };
+    HomeComponent.prototype.goHome = function () {
+        this._router.navigate(['Home']);
     };
     HomeComponent = __decorate([
         core_1.Component({

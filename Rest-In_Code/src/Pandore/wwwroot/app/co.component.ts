@@ -5,6 +5,7 @@ import { InComponent } from './in.component';
 import { UtilisateurService } from './service/utilisateur.service';
 import { Utilisateur } from './classe/utilisateur';
 import { Observable, Subscription } from 'rxjs/Rx';
+import { Auth } from './service/auth.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CoComponent {
 
     constructor(
         private _router: Router,
-        private _uService: UtilisateurService
+        private _uService: UtilisateurService,
+        private auth: Auth
     ) { }
 
     ngOnInit() {
@@ -37,6 +39,19 @@ export class CoComponent {
         this._router.navigate(['Home']);
     }
     connexion() {
+        this._uService.verificationConnexion(this.mail, this.password).subscribe(data => this.utilisateur = data);
+
+        this.sTimeout = setTimeout(() => {
+            if (this.utilisateur) {
+                this.auth.login();
+               this._router.navigate(['Home']);
+              //  this._router.navigate(['Home', { us: this.utilisateur.id }]);
+            } else {
+                alert("Le mot de passe ou l'e-mail n'existe pas.");
+                this.mail = "";
+                this.password = "";
+            }
+        }, 600);
     }  
     gotoIn() {
         this._router.navigate(['In']);
