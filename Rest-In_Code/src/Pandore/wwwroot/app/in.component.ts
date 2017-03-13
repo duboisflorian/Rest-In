@@ -36,7 +36,20 @@ export class InComponent {
     }
 
     inscription() {
-      
+        if (this.password == this.confirmPasword) {
+            this._uService.verificationMailExist(this.mail).subscribe(data => this.message = data);
+            this.sTimeout = setTimeout(() => {
+                if (this.message == "existe") {
+                    alert("L'adresse mail existe déjà");
+                }
+                else {
+                    this._uService.ajouterUtilisateur(this.name, this.mail, this.password).subscribe(data => this.message = data);
+                    this._router.navigate(['Home']);
+                }
+            }, 600);
+        } else {
+            alert("Les mots de passe ne sont pas identiques");
+        }
     }
     gotoCo() {
         this._router.navigate(['Co']);

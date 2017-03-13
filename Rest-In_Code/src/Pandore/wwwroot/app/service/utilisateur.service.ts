@@ -14,4 +14,14 @@ export class UtilisateurService {
             .map(data => data.json());
     }
 
+    verificationMailExist(mail: string) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/verifmail/' + mail)
+            .map(data => data.json());
+    }
+
+    ajouterUtilisateur(name: string, mail: string, password: string) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/ajoutuser/' + name + '/' + mail + '/' + password)
+            .map(data => data.json());
+    }
+
 }

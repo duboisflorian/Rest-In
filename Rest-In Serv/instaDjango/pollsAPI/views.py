@@ -430,6 +430,24 @@ def UserAuth(request, pk,pr, format=None):
         u.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET'])
+def VerifMail(request, pk, format=None):
+
+    try:
+        u = User.objects.get(mail=pk)
+    except User.DoesNotExist:
+        return Response("existepas")
+
+    if request.method == 'GET':
+        serializer = UserSerializer(u)
+        return Response("existe")
+
+@api_view(['GET'])
+def AddUser(request, name, mail, pwd, format=None):
+
+        User.objects.create(name=name,mail=mail,password=pwd,type=0.0)
+        return Response("cree")
+
 @api_view(['GET', 'DELETE'])
 def InfoHotel(request, pk, format=None):
 

@@ -21,6 +21,8 @@ urlpatterns = [
     url('^hotels/(?P<pk>[0-9]+)$', views.HotelDetail),
     url('^infohotel/(?P<pk>[A-Za-z0-9]+)$', views.InfoHotel),
     url('^users/$', views.UserList),
+    url('^ajoutuser/(?P<name>[A-Za-z0-9]+)/(?P<mail>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+)/(?P<pwd>[A-Za-z0-9]+)$', views.AddUser),
+    url('^verifmail/(?P<pk>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+)$', views.VerifMail),
     url('^users/(?P<pk>[0-9]+)$', views.UserDetail),
     url('^usersauth/(?P<pk>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+)/(?P<pr>[A-Za-z0-9]+)$', views.UserAuth),
     url('^hotels_roomtypes/$', views.HotelRTList),

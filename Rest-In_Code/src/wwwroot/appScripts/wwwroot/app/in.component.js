@@ -28,6 +28,23 @@ var InComponent = (function () {
         });
     };
     InComponent.prototype.inscription = function () {
+        var _this = this;
+        if (this.password == this.confirmPasword) {
+            this._uService.verificationMailExist(this.mail).subscribe(function (data) { return _this.message = data; });
+            this.sTimeout = setTimeout(function () {
+                if (_this.message == "existe") {
+                    alert("L'adresse mail existe déjà");
+                }
+                else {
+                    alert(_this.message);
+                    _this._uService.ajouterUtilisateur(_this.name, _this.mail, _this.password).subscribe(function (data) { return _this.message = data; });
+                    _this._router.navigate(['Home']);
+                }
+            }, 600);
+        }
+        else {
+            alert("Les mots de passe ne sont pas identiques");
+        }
     };
     InComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);

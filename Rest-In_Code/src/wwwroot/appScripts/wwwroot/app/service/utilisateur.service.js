@@ -19,6 +19,14 @@ var UtilisateurService = (function () {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/usersauth/' + mail + '/' + password)
             .map(function (data) { return data.json(); });
     };
+    UtilisateurService.prototype.verificationMailExist = function (mail) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/verifmail/' + mail)
+            .map(function (data) { return data.json(); });
+    };
+    UtilisateurService.prototype.ajouterUtilisateur = function (name, mail, password) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/ajoutuser/' + name + '/' + mail + '/' + password)
+            .map(function (data) { return data.json(); });
+    };
     UtilisateurService = __decorate([
         // we need to import this now
         core_1.Injectable(), 
