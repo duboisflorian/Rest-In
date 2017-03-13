@@ -29,7 +29,8 @@ export class HomeComponent  {
         private _cityService: CityService) { }
 
     ngOnInit() {
-         this.us = +this._routeParams.get('us');
+        let x = +this._routeParams.get('us');
+        this.us = x;
         this._cityService.getAll()
             .subscribe(data => this.cities = data);
 

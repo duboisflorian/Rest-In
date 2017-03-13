@@ -22,7 +22,8 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.us = +this._routeParams.get('us');
+        var x = +this._routeParams.get('us');
+        this.us = x;
         this._cityService.getAll()
             .subscribe(function (data) { return _this.cities = data; });
         this.image = "acc1.jpg";
