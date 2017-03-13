@@ -56,7 +56,10 @@ export class HomeComponent  {
         alert("No city found");
     }
     goFeature() {
-        this._router.navigate(['Feature']);
+        if(this.us!=0)
+            this._router.navigate(['Feature', { us: this.us}]);
+        else
+            this._router.navigate(['Feature']);
     }
     gotoCo() {
         this._router.navigate(['Co']);

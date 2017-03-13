@@ -12,12 +12,16 @@ var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var Rx_1 = require('rxjs/Rx');
 var http_1 = require('angular2/http');
+var router_2 = require('angular2/router');
 var FeatureComponent = (function () {
-    function FeatureComponent(_router) {
+    function FeatureComponent(_router, _routeParams) {
         this._router = _router;
+        this._routeParams = _routeParams;
+        this.us = 0;
     }
     FeatureComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.us = +this._routeParams.get('us');
         this.image = "acc1.jpg";
         Rx_1.Observable.interval(30000)
             .take(100).map(function (x) { return x + 1; })
@@ -27,17 +31,23 @@ var FeatureComponent = (function () {
         });
     };
     FeatureComponent.prototype.goHome = function () {
-        this._router.navigate(['Home']);
+        if (this.us != 0)
+            this._router.navigate(['Home', { us: this.us }]);
+        else
+            this._router.navigate(['Home']);
     };
     FeatureComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);
+    };
+    FeatureComponent.prototype.gotoDeco = function () {
+        this._router.navigate(['Home']);
     };
     FeatureComponent = __decorate([
         core_1.Component({
             selector: 'my-feature', providers: [http_1.HTTP_PROVIDERS],
             templateUrl: 'app/feature.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, router_2.RouteParams])
     ], FeatureComponent);
     return FeatureComponent;
 }());

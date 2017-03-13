@@ -10,16 +10,16 @@
                     <div class="inner">
                         <h3 class="masthead-brand">Rest-In</h3>
                         <nav>
-                            <ul class="nav masthead-nav" *ngIf="auth.authenticated()">
+                            <ul class="nav masthead-nav" *ngIf="us==0">
                                 <li class="active"><a href="">Accueil</a></li>
                                 <li><a (click)="goFeature()">Informations</a></li>
                                 <li><a (click)="gotoCo()">Se connecter</a></li>
                             </ul>
-                            <ul class="nav masthead-nav" *ngIf="!auth.authenticated()">
+                            <ul class="nav masthead-nav" *ngIf="us!=0">
                                 <li class="active"><a href="">Accueil</a></li>
                                 <li><a (click)="goFeature()">Informations</a></li>
                                 <li><a >Mes reservations</a></li>
-                                <li><a (click)="auth.logout()">Se déconnecter</a></li>
+                                <li><a (click)="goHome()">Se déconnecter</a></li>
                             </ul>
                         </nav>
                     </div>

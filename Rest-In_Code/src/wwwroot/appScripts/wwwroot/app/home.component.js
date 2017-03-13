@@ -47,7 +47,10 @@ var HomeComponent = (function () {
             alert("No city found");
     };
     HomeComponent.prototype.goFeature = function () {
-        this._router.navigate(['Feature']);
+        if (this.us != 0)
+            this._router.navigate(['Feature', { us: this.us }]);
+        else
+            this._router.navigate(['Feature']);
     };
     HomeComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);
