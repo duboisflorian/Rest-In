@@ -52,6 +52,9 @@ export class HomeComponent  {
     goFeature() {
         this._router.navigate(['Feature']);
     }
+    gotoCo() {
+        this._router.navigate(['Co']);
+    }
 }
 
 /*

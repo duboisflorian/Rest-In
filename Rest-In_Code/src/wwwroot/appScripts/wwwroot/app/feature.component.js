@@ -29,6 +29,9 @@ var FeatureComponent = (function () {
     FeatureComponent.prototype.goHome = function () {
         this._router.navigate(['Home']);
     };
+    FeatureComponent.prototype.gotoCo = function () {
+        this._router.navigate(['Co']);
+    };
     FeatureComponent = __decorate([
         core_1.Component({
             selector: 'my-feature', providers: [http_1.HTTP_PROVIDERS],

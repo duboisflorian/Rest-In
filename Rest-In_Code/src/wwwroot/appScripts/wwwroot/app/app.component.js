@@ -12,11 +12,14 @@ var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var home_component_1 = require('./home.component');
 var allh_component_1 = require('./allh.component');
+var co_component_1 = require('./co.component');
+var in_component_1 = require('./in.component');
 var feature_component_1 = require('./feature.component');
 var hotel_component_1 = require('./hotel.component');
 var http_1 = require('angular2/http');
 var hotel_service_1 = require('./service/hotel.service');
 var city_service_1 = require('./service/city.service');
+var utilisateur_service_1 = require('./service/utilisateur.service');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Rest-In';
@@ -30,6 +33,7 @@ var AppComponent = (function () {
                 router_1.ROUTER_PROVIDERS,
                 http_1.HTTP_PROVIDERS,
                 city_service_1.CityService,
+                utilisateur_service_1.UtilisateurService,
                 hotel_service_1.HotelService
             ]
         }),
@@ -51,6 +55,16 @@ var AppComponent = (function () {
                 component: feature_component_1.FeatureComponent
             },
             {
+                path: '/co',
+                name: 'Co',
+                component: co_component_1.CoComponent
+            },
+            {
+                path: '/in',
+                name: 'In',
+                component: in_component_1.InComponent
+            },
+            {
                 path: '/hotel',
                 name: 'Hotel',
                 component: hotel_component_1.HotelComponent
@@ -61,9 +75,4 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/ 
 //# sourceMappingURL=app.component.js.map

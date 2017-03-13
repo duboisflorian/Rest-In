@@ -11,12 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var utilisateur_service_1 = require('./service/utilisateur.service');
+var Rx_1 = require('rxjs/Rx');
 var InComponent = (function () {
     function InComponent(_router, _uService) {
         this._router = _router;
         this._uService = _uService;
     }
+    InComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.image = "acc1.jpg";
+        Rx_1.Observable.interval(30000)
+            .take(100).map(function (x) { return x + 1; })
+            .subscribe(function (x) {
+            var y = Math.floor(Math.random() * 5) + 1;
+            _this.image = "acc" + y + ".jpg";
+        });
+    };
     InComponent.prototype.inscription = function () {
+    };
+    InComponent.prototype.gotoCo = function () {
+        this._router.navigate(['Co']);
     };
     InComponent = __decorate([
         core_1.Component({

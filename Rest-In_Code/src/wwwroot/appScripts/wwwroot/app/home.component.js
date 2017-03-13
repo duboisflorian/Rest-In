@@ -47,6 +47,9 @@ var HomeComponent = (function () {
     HomeComponent.prototype.goFeature = function () {
         this._router.navigate(['Feature']);
     };
+    HomeComponent.prototype.gotoCo = function () {
+        this._router.navigate(['Co']);
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'my-home',

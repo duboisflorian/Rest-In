@@ -1,14 +1,29 @@
 ﻿<body id="animate-area" onload="startTimer()" style="background:url(../fichier/{{image}});background-size:120% 100%">
-    <div class="core_co_in">
-        <a class="navbar-brand menu" (click)="gotoHome()" style="padding-top:0; padding-bottom:0;"> <img class="logo" style="display:inline;" src="fichier/logo.png" /> <span style="display:inline;" class="text-logo">Find My Name</span></a>
-        <form (ngSubmit)="connexion()" class="form_co">
-            <a (click)="gotocheat()"><h2 style="color:antiquewhite;" class="form-signin-heading">Connectez-vous :</h2></a>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input id="inputEmail" [(ngModel)]="mail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input id="inputPassword" [(ngModel)]="password" class="form-control" placeholder="Password" required="" type="password">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-        <p (click)="gotoIn()">Vous n'avez pas de compte ? Inscrivez-vous ici</p>
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <div class="inner cover">
+
+                    <form (ngSubmit)="connexion()" class="form_co">
+                        <h2 style="color:antiquewhite;" class="form-signin-heading">Connectez-vous :</h2>
+                        <br />
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input id="inputEmail" style="display:inline;" [(ngModel)]="mail" class="form-control" placeholder="Adresse mail" required=""  type="email">
+                        <br />
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input  style="display:inline;" id="inputPassword" [(ngModel)]="password" class="form-control" placeholder="Mot de passe" required="" type="password">
+                        <br /><br />
+                        <button class="btn btn-default btn-lg active" type="submit">Se connecter</button>
+                        <br /><br /><br />
+                        <p (click)="gotoIn()">Vous n'avez pas de compte ? Inscrivez-vous ici</p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+

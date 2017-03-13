@@ -28,4 +28,7 @@ export class FeatureComponent {
     goHome() {
         this._router.navigate(['Home']);
     }
+    gotoCo() {
+        this._router.navigate(['Co']);
+    }
 }
