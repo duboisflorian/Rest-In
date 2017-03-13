@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
+var Rx_1 = require('rxjs/Rx');
 var http_1 = require('angular2/http');
 var hotel_service_1 = require('./service/hotel.service');
 var city_service_1 = require('./service/city.service');
@@ -31,6 +32,9 @@ var AllHComponent = (function () {
     };
     AllHComponent.prototype.onClickMe = function () {
         this._router.navigate(['Allh', { cities: this.v }]);
+    };
+    AllHComponent.prototype.gotoCo = function () {
+        this._router.navigate(['Co']);
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -56,6 +60,13 @@ var AllHComponent = (function () {
                 infos[i].open(map, markers[i]);
             }
         }, 150);
+        this.image = "acc1.jpg";
+        Rx_1.Observable.interval(30000)
+            .take(100).map(function (x) { return x + 1; })
+            .subscribe(function (x) {
+            var y = Math.floor(Math.random() * 5) + 1;
+            _this.image = "acc" + y + ".jpg";
+        });
     };
     AllHComponent = __decorate([
         core_1.Component({

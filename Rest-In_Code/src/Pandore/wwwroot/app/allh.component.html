@@ -1,51 +1,69 @@
-﻿<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div id="map"></div>
-            </div>
-            <div class="col-md-6" style="position: fixed; 
-    overflow-y: scroll; 
-    top: 0; 
-    bottom: 0; 
-    right: 0;">
-                <br />
-                    <div class="row bloc">
-                        <div class="col-xs-6 col-md-4">
-                                <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
+﻿<body id="animate-area" onload="startTimer()" style="background:url(../fichier/{{image}});background-size:120% 100%">
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Rest-In</h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="">Accueil</a></li>
+                                <li><a (click)="gotoCo()">Se connecter</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+                <div class="inner cover">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="map"></div>
                         </div>
-                        <div class="col-xs-6 col-md-8"><h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                            <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+
+                        <div class="col-md-6" style="position: fixed;overflow-y: scroll;top: 10%;bottom: 5%;right: 0;">
+                            <br />
+                            <div class="row bloc">
+                                <div class="col-xs-6 col-md-4">
+                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
+                                </div>
+                                <div class="col-xs-6 col-md-8">
+                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
+                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+                                </div>
+                            </div>
+                            <div class="row bloc">
+                                <div class="col-xs-6 col-md-4">
+                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
+                                </div>
+                                <div class="col-xs-6 col-md-8">
+                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
+                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+                                </div>
+                            </div>
+                            <div class="row bloc">
+                                <div class="col-xs-6 col-md-4">
+                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
+                                </div>
+                                <div class="col-xs-6 col-md-8">
+                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotelsss est le meilleur hotel qui existe en ce moment même.</p>
+                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+                                </div>
+                            </div>
+                            <div class="row bloc">
+                                <div class="col-xs-6 col-md-4">
+                                    <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
+                                </div>
+                                <div class="col-xs-6 col-md-8">
+                                    <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
+                                    <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                <div class="row bloc">
-                    <div class="col-xs-6 col-md-4">
-                        <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                    </div>
-                    <div class="col-xs-6 col-md-8">
-                        <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                        <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                    </div>
-                </div>
-                <div class="row bloc">
-                    <div class="col-xs-6 col-md-4">
-                        <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                    </div>
-                    <div class="col-xs-6 col-md-8">
-                        <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                        <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                    </div>
-                </div>
-                <div class="row bloc">
-                    <div class="col-xs-6 col-md-4">
-                        <img src="http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg" alt="hotels" width="200" height="200">
-                    </div>
-                    <div class="col-xs-6 col-md-8">
-                        <h2>"Nom de l'hotel"</h2><br /><p> Ctte hotel est le meilleur hotel qui existe en ce moment même.</p>
-                        <p><button class="btn btn-primary btn-lg" (click)="onClickMe()">Réserver votre hotel !</button></p>
-                    </div>
-                </div>
+
                 </div>
             </div>
         </div>
+    </div>
 </body>

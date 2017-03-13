@@ -19,6 +19,7 @@ export class AllHComponent {
 
     v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
     sTimeout: any;
+    image: string;
 
     constructor(
         private _router: Router,
@@ -35,7 +36,9 @@ export class AllHComponent {
     onClickMe() {
         this._router.navigate(['Allh', { cities: this.v }]);
     }
-
+    gotoCo() {
+        this._router.navigate(['Co']);
+    }
     ngOnInit() {
         let id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
@@ -63,6 +66,13 @@ export class AllHComponent {
             }
 
         }, 150);
+        this.image = "acc1.jpg";
+        Observable.interval(30000)
+            .take(100).map((x) => x + 1)
+            .subscribe((x) => {
+                var y = Math.floor(Math.random() * 5) + 1
+                this.image = "acc" + y + ".jpg";
+            });
 
     }
 
