@@ -52,5 +52,12 @@ class RoomR(models.Model):
     reserv_start = models.DateField(null=True, blank=True)
     reserv_end = models.DateField(null=True, blank=True)
 
+class User(models.Model):
+    name = models.CharField(max_length=200)
+    mail = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    type = models.FloatField(default=0)
 
+    def __str__(self):
+        return self.name
 

@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from pollsAPI.models import Hotel, City, RoomType, Room, RoomD, RoomImage, RoomR
+from pollsAPI.models import Hotel, City, RoomType, Room, RoomD, RoomImage, RoomR, User
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 class RoomTypeSerializer(serializers.ModelSerializer):
     class Meta:
