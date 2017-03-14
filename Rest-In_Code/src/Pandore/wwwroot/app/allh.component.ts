@@ -18,7 +18,7 @@ import {Headers} from 'angular2/http';
 
 export class AllHComponent {
 
-    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1, "hotelier": 0}], "city_name": "", "city_lat": 0, "city_long": 0 };
     roomtypes: HotelAvance[] = [{
         "id": 1,
         "roomtypes": [
@@ -58,7 +58,8 @@ export class AllHComponent {
         "adr": "17 Avenue Victoria",
         "image": "http://www.hotel-victoria-chatelet.com/media/img/home/vignette3.jpg",
         "stars": 3.0,
-        "city": 1
+        "city": 1,
+        "hotelier":0
     }];
     detailshotel: boolean = false;
     detailschambre: boolean = false;

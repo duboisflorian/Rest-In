@@ -29,4 +29,9 @@ export class UtilisateurService {
             .map(data => data.json());
     }
 
+    getUserH(id: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/userh/' + id)
+            .map(data => data.json());
+    }
+    
 }
