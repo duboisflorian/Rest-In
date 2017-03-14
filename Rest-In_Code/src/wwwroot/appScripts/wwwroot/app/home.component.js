@@ -42,8 +42,12 @@ var HomeComponent = (function () {
                 this.c = this.cities[i];
             }
         }
-        if (found == 1)
-            this._router.navigate(['Allh', { id: this.c.id }]);
+        if (found == 1) {
+            if (this.us != 0)
+                this._router.navigate(['Allh', { id: this.c.id, us: this.us }]);
+            else
+                this._router.navigate(['Allh', { id: this.c.id }]);
+        }
         else
             alert("No city found");
     };

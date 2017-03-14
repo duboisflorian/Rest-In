@@ -22,6 +22,7 @@ var AllHComponent = (function () {
         this._routeParams = _routeParams;
         this._cityService = _cityService;
         this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+        this.us = 0;
     }
     AllHComponent.prototype.onClickMe = function () {
         this.detailshotel = true;
@@ -32,6 +33,8 @@ var AllHComponent = (function () {
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.detailshotel = false;
+        var x = +this._routeParams.get('us');
+        this.us = x;
         var id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
@@ -70,6 +73,16 @@ var AllHComponent = (function () {
             var y = Math.floor(Math.random() * 5) + 1;
             _this.image = "acc" + y + ".jpg";
         });
+    };
+    AllHComponent.prototype.goAllH = function () {
+        var id = +this._routeParams.get('id');
+        this._router.navigate(['Allh', { id: id }]);
+    };
+    AllHComponent.prototype.goHome = function () {
+        if (this.us != 0)
+            this._router.navigate(['Home', { us: this.us }]);
+        else
+            this._router.navigate(['Home']);
     };
     AllHComponent = __decorate([
         core_1.Component({

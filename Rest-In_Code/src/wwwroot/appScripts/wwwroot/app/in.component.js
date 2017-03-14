@@ -36,7 +36,6 @@ var InComponent = (function () {
                     alert("L'adresse mail existe déjà");
                 }
                 else {
-                    alert(_this.message);
                     _this._uService.ajouterUtilisateur(_this.name, _this.mail, _this.password).subscribe(function (data) { return _this.message = data; });
                     _this._router.navigate(['Home']);
                 }

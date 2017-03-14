@@ -21,6 +21,7 @@ export class AllHComponent {
     detailshotel: boolean;
     sTimeout: any;
     image: string;
+    us: number = 0;
 
     constructor(
         private _router: Router,
@@ -37,6 +38,8 @@ export class AllHComponent {
     
     ngOnInit() {
         this.detailshotel = false;
+        let x = +this._routeParams.get('us');
+        this.us = x;
         let id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(data => this.v = data);
@@ -80,6 +83,16 @@ export class AllHComponent {
                 this.image = "acc" + y + ".jpg";
             });
 
+    }
+    goAllH() {
+        let id = +this._routeParams.get('id');
+        this._router.navigate(['Allh', { id: id }]);
+    }
+    goHome() {
+            if (this.us != 0)
+                this._router.navigate(['Home', { us: this.us }]);
+            else
+                this._router.navigate(['Home']);
     }
 
 }
