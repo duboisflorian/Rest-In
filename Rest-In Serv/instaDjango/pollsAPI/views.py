@@ -443,6 +443,20 @@ def VerifMail(request, pk, format=None):
         return Response("existe")
 
 @api_view(['GET'])
+def UserType(request, pk, format=None):
+
+    try:
+        u = User.objects.get(id=pk)
+    except User.DoesNotExist:
+        return Response("0")
+
+    if request.method == 'GET':
+        if u.type==0.0:
+            return Response("0")
+        else:
+            return Response("1")
+
+@api_view(['GET'])
 def AddUser(request, name, mail, pwd, format=None):
 
         User.objects.create(name=name,mail=mail,password=pwd,type=0.0)

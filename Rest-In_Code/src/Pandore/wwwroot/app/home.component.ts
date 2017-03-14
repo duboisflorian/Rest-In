@@ -20,17 +20,24 @@ export class HomeComponent  {
     sTimeout: any;
     utilisateur: Utilisateur;
     us: number = 0;
+    us_type: number = 0;
 
 
 
     constructor(
         private _router: Router,
         private _routeParams: RouteParams,
+        private _uService: UtilisateurService,
         private _cityService: CityService) { }
 
     ngOnInit() {
         let x = +this._routeParams.get('us');
         this.us = x;
+
+        if(this.us!=0)
+        this._uService.getUserType(this.us)
+            .subscribe(data => this.us_type = data);
+
         this._cityService.getAll()
             .subscribe(data => this.cities = data);
 
