@@ -51,4 +51,10 @@ export class FeatureComponent {
     gotoDeco() {
         this._router.navigate(['Home']);
     }
+    goHotel() {
+        if (this.us != 0)
+            this._router.navigate(['Hotel', { us: this.us }]);
+        else
+            this._router.navigate(['Hotel']);
+    }
 }

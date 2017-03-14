@@ -485,12 +485,12 @@ def InfoHotel(request, pk, format=None):
 def UserH(request, pk, format=None):
 
     try:
-        r = User.objects.filter(hotel=pk)
+        r = User.objects.get(hotel=pk)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = UserHSerializer(r, many=True)
+        serializer = UserHSerializer(r)
         return Response(serializer.data)
 
 @api_view(['GET'])
