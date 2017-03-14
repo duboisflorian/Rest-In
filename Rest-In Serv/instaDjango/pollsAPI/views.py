@@ -1,5 +1,5 @@
 from pollsAPI.models import Hotel , City , RoomType , Room , RoomR, RoomD, RoomImage, User
-from pollsAPI.serializers import HotelSerializer , RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
+from pollsAPI.serializers import HotelSerializer , UserHSerializer, RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
 from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
 from rest_framework import status
@@ -480,3 +480,27 @@ def InfoHotel(request, pk, format=None):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def UserH(request, pk, format=None):
+
+    try:
+        r = User.objects.filter(hotel=pk)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = UserHSerializer(r, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def RTImages(request, pk, format=None):
+
+    try:
+        r = RoomType.objects.filter(id=pk)
+    except RoomType.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomTypeImagesSerializer(r, many=True)
+        return Response(serializer.data)

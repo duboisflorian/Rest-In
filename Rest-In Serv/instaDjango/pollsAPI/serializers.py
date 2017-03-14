@@ -71,3 +71,16 @@ class CityHSerializer(serializers.ModelSerializer):
         model = City
         fields = '__all__'
 
+
+class UserHSerializer(serializers.ModelSerializer):
+    hotel = HotelSerializer(
+        read_only=True,
+        many=True,
+    )
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
+

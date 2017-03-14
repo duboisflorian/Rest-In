@@ -22,6 +22,7 @@ urlpatterns = [
     url('^infohotel/(?P<pk>[A-Za-z0-9]+)$', views.InfoHotel),
     url('^users/$', views.UserList),
     url('^usertype/(?P<pk>[0-9]+)$', views.UserType),
+    url('^userh/(?P<pk>[0-9]+)$', views.UserH),
     url('^ajoutuser/(?P<name>[A-Za-z0-9]+)/(?P<mail>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+)/(?P<pwd>[A-Za-z0-9]+)$', views.AddUser),
     url('^verifmail/(?P<pk>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+)$', views.VerifMail),
     url('^users/(?P<pk>[0-9]+)$', views.UserDetail),
@@ -41,6 +42,7 @@ urlpatterns = [
     url('^roomD/$', views.RoomDList),
     url('^roomD/(?P<pk>[0-9]+)$', views.RoomDDetail),
     url('^roomimages/$', views.RoomImagesList),
+    url('^rtimages/(?P<pk>[0-9]+)$', views.RTImages),
     url('^roomimages/(?P<pk>[0-9]+)$', views.RoomImagesDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

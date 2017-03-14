@@ -7,8 +7,19 @@ class City(models.Model):
     def __str__(self):
         return self.city_name
 
+class User(models.Model):
+    name = models.CharField(max_length=200)
+    mail = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    type = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class Hotel(models.Model):
     city = models.ForeignKey(City, related_name='hotels', on_delete=models.CASCADE)
+    hotelier = models.ForeignKey(User, related_name='hotel', on_delete=models.CASCADE)
     hotel_name = models.CharField(max_length=200)
     hotel_desc = models.CharField(max_length=200,blank=True)
     hotel_lat = models.FloatField(default=0)
@@ -51,15 +62,6 @@ class RoomR(models.Model):
     room = models.ForeignKey(Room, related_name='reserv', on_delete=models.CASCADE)
     reserv_start = models.DateField(null=True, blank=True)
     reserv_end = models.DateField(null=True, blank=True)
-
-class User(models.Model):
-    name = models.CharField(max_length=200)
-    mail = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    type = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.name
 
 
 
