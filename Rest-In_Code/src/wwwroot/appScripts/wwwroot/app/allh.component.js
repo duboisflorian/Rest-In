@@ -91,6 +91,8 @@ var AllHComponent = (function () {
         if (this.us != 0)
             this._uService.getUserType(this.us)
                 .subscribe(function (data) { return _this.us_type = data; });
+        this._cityService.getAll()
+            .subscribe(function (data) { return _this.cities = data; });
         var id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
@@ -147,6 +149,23 @@ var AllHComponent = (function () {
             this._router.navigate(['Hotel', { us: this.us }]);
         else
             this._router.navigate(['Hotel']);
+    };
+    AllHComponent.prototype.ChangeSearch = function () {
+        var found = 0;
+        for (var i = 0; i < this.cities.length; i++) {
+            if (this.cities[i].city_name == this.search) {
+                found += 1;
+                this.c = this.cities[i];
+            }
+        }
+        if (found == 1) {
+            if (this.us != 0)
+                this._router.navigate(['Allh', { id: this.c.id, us: this.us }]);
+            else
+                this._router.navigate(['Allh', { id: this.c.id }]);
+        }
+        else
+            alert("No city found");
     };
     AllHComponent = __decorate([
         core_1.Component({

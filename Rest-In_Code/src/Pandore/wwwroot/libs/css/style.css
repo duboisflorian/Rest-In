@@ -78,9 +78,8 @@ used to vertically center elements, may need modification if you're not using de
             animation: animatedBackground 10s linear infinite alternate;
         }
             #map {
-                padding-right: 100px;
-                height:600px;
-                width: 300px;
+                height:80%;
+                width: 95%;
             }
                     input[type=text] {
 

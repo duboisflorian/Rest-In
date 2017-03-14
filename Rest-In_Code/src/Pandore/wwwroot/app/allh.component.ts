@@ -62,10 +62,14 @@ export class AllHComponent {
     }];
     detailshotel: boolean = false;
     detailschambre: boolean = false;
+    search: string;
+    cities: City[];
     sTimeout: any;
+    c: City;
     image: string;
     us: number = 0;
     us_type: number = 0;
+    act: number = 0;
 
     constructor(
         private _router: Router,
@@ -81,6 +85,7 @@ export class AllHComponent {
     }
     afficherdetails(id: number) {
         if (id != 999) {
+            this.act = id;
             this.detailschambre = true;
             this._hotelService.getChambreByHotel(id)
                 .subscribe(data => this.chambre = data);
@@ -97,6 +102,9 @@ export class AllHComponent {
         if (this.us != 0)
             this._uService.getUserType(this.us)
                 .subscribe(data => this.us_type = data);
+
+        this._cityService.getAll()
+            .subscribe(data => this.cities = data);
 
         let id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
@@ -159,6 +167,24 @@ export class AllHComponent {
             this._router.navigate(['Hotel', { us: this.us }]);
         else
             this._router.navigate(['Hotel']);
+    }
+
+    ChangeSearch() {
+        var found = 0;
+        for (var i = 0; i < this.cities.length; i++) {
+            if (this.cities[i].city_name == this.search) {
+                found += 1;
+                this.c = this.cities[i];
+            }
+        }
+        if (found == 1) {
+            if (this.us != 0)
+                this._router.navigate(['Allh', { id: this.c.id, us: this.us }]);
+            else
+                this._router.navigate(['Allh', { id: this.c.id }]);
+        }
+        else
+            alert("No city found");
     }
 
 }
