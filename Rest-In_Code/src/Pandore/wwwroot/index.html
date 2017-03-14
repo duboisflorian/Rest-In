@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="libs/css/style.css">
     <link href="libs/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
     <!-- IE required polyfills, in this exact order -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
@@ -31,6 +34,16 @@
       });
       System.import('app/main')
             .then(null, console.error.bind(console));
+      $(document).ready(function () {
+          $("div.foodchef-tab-menu>div.list-group>a").click(function (e) {
+              e.preventDefault();
+              $(this).siblings('a.active').removeClass("active");
+              $(this).addClass("active");
+              var index = $(this).index();
+              $("div.foodchef-tab>div.foodchef-tab-content").removeClass("active");
+              $("div.foodchef-tab>div.foodchef-tab-content").eq(index).addClass("active");
+          });
+      });
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

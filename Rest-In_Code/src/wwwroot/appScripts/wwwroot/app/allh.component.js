@@ -22,17 +22,72 @@ var AllHComponent = (function () {
         this._routeParams = _routeParams;
         this._cityService = _cityService;
         this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+        this.roomtypes = [{
+                "id": 1,
+                "roomtypes": [
+                    {
+                        "id": 1,
+                        "images": [
+                            {
+                                "id": 1,
+                                "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                                "room_type": 1
+                            }
+                        ],
+                        "type_name": "Chambre Standard",
+                        "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+                        "type_price": 126.0,
+                        "hotel": 1
+                    },
+                    {
+                        "id": 2,
+                        "images": [
+                            {
+                                "id": 4,
+                                "image_path": "https://media-cdn.tripadvisor.com/media/photo-s/03/d8/51/07/hotel-victoria-chatelet.jpg",
+                                "room_type": 2
+                            }
+                        ],
+                        "type_name": "Chambre Supérieure",
+                        "type_desc": "Doubles ou twin, joliment décorées et colorées, elles invitent à la douceur de vivre au cœur du 1er arrondissement. Les atouts de la capitale… le calme et la convivialité en plus !",
+                        "type_price": 170.0,
+                        "hotel": 1
+                    }
+                ],
+                "hotel_name": "Hotel Victoria Chatelet",
+                "hotel_desc": "Hotel Victoria Chatelet",
+                "hotel_lat": 48.857841,
+                "hotel_long": 2.346736,
+                "adr": "17 Avenue Victoria",
+                "image": "http://www.hotel-victoria-chatelet.com/media/img/home/vignette3.jpg",
+                "stars": 3.0,
+                "city": 1
+            }];
+        this.detailshotel = false;
+        this.detailschambre = false;
+        this.onglethotel = true;
+        this.ongletchambre = false;
         this.us = 0;
     }
-    AllHComponent.prototype.onClickMe = function () {
+    AllHComponent.prototype.onClickMe = function (v) {
+        var _this = this;
         this.detailshotel = true;
+        this._hotelService.getHotelWithRoomTypes(v.id)
+            .subscribe(function (data) { return _this.roomtypes = data; });
+    };
+    AllHComponent.prototype.afficherdetails = function (id) {
+        if (id != 999) {
+            this.detailschambre = true;
+        }
+        else {
+            this.detailschambre = false;
+        }
     };
     AllHComponent.prototype.gotoCo = function () {
         this._router.navigate(['Co']);
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.detailshotel = false;
         var x = +this._routeParams.get('us');
         this.us = x;
         var id = +this._routeParams.get('id');
