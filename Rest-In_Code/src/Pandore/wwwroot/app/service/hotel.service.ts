@@ -22,4 +22,9 @@ export class HotelService {
             .map(data => data.json());
     }
 
+    getChambreByHotel(i: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/rtimages/' + i + '.json')
+            .map(data => data.json());
+    }
+
 }

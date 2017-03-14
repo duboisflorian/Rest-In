@@ -29,7 +29,7 @@
                                     <!-- Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <button type="button" class="close" data-dismiss="modal" (click)="detailshotel = false; detailschambre = false;">×</button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="foodlistmodal-container">
@@ -40,268 +40,50 @@
                                                                 <a class="list-group-item text-center active onglet hotel" (click)="afficherdetails(999)">
                                                                     <h4 class="glyphicon glyphicon-bed"></h4><br>Hotel
                                                                 </a>
-                                                                <a *ngFor="#chambre of roomtypes.roomtypes" class="list-group-item text-center onglet chambre" (click)="afficherdetails(chambre.id)">
-                                                                    <h4 class="glyphicon glyphicon-bed"></h4><br>{{chambre.type_name}}
+                                                                <a *ngFor="#roomtype of roomtypes.roomtypes" class="list-group-item text-center onglet chambre" (click)="afficherdetails(roomtype.id)">
+                                                                    <h4 class="glyphicon glyphicon-bed"></h4><br>{{roomtype.type_name}}
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                                             <div class="foodchef-tab">
                                                                 <div *ngIf="detailschambre == false">
-                                                                    {{roomtypes.hotel_name}}
-                                                                </div>
-                                                                <div *ngIf="detailschambre == true" class="foodchef-tab-content active">
-                                                                    <div class="itemlistpopup">
-                                                                        <div class="col-sm-12">
-                                                                            <div class="single-item">
-                                                                                <div class="item-image">
-                                                                                    <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/food.jpg" alt="image_alt">
-                                                                                </div>
-                                                                                <div class="item-info">
-                                                                                    <span class="via">The Title <i class="circle-box"><span class="path1"><i class="fa fa-circle NonVeg"></i></span></i></span>
-                                                                                    <span class="rate" data-rate="5">
-                                                                                        <i class="fa fa-star"></i>4.3
-
-
-                                                                                    </span>
-                                                                                </div>
-                                                                                <p class="item-quote">
-                                                                                    This is a dummy text and can be changed as per your requirement.
-                                                                                </p>
-                                                                                <div class="item-price">
-                                                                                    <!-- getting dish price html -->
-                                                                                    <span class="pull-left"><i class="fa fa-usd"></i>220</span>
-                                                                                    <span class="item-taste-content">Category</span>
-                                                                                </div>
-                                                                            </div><!-- /.single-item -->
+                                                                    <div class="foodchef-tab-content active">
+                                                                        <div class="itemlistpopup">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="single-item">
+                                                                                    <div class="item-image">
+                                                                                        <img src="{{roomtypes.image}}" alt="image_alt">
+                                                                                    </div>
+                                                                                    <div class="item-info">
+                                                                                        <span class="via">{{roomtypes.hotel_name}} <span class="path1"></span></span>
+                                                                                        <span class="rate" data-rate="5">
+                                                                                            <i class="fa fa-star">{{roomtypes.stars}}</i>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <p class="item-quote">
+                                                                                        {{roomtypes.hotel_desc}}
+                                                                                    </p>
+                                                                                    <div class="item-price">
+                                                                                        <!-- getting dish price html -->
+                                                                                        <br/>
+                                                                                        <span class="pull-left">220 € par nuit</span>
+                                                                                        <span class="item-taste-content">Wifi</span>
+                                                                                        <span class="item-taste-content">Petit-déjeuner</span>
+                                                                                    </div>
+                                                                                </div><!-- /.single-item -->
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-sm-12">
-                                                                            <div class="single-item">
-                                                                                <div class="item-image">
-                                                                                    <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/food.jpg" alt="image_alt">
-                                                                                </div>
-                                                                                <div class="item-info">
-                                                                                    <span class="via">The Title <i class="circle-box"><span class="path1"><i class="fa fa-circle Veg"></i></span></i></span>
-                                                                                    <span class="rate" data-rate="5">
-                                                                                        <i class="fa fa-star"></i>4.3
-
-
-                                                                                    </span>
-                                                                                </div>
-                                                                                <p class="item-quote">
-                                                                                    This is a dummy text and can be changed as per your requirement.
-                                                                                </p>
-                                                                                <div class="item-price">
-                                                                                    <!-- getting dish price html -->
-                                                                                    <span class="pull-left"><i class="fa fa-usd"></i>220</span>
-
-                                                                                    <span class="item-taste-content">Category</span>
-
-                                                                                </div>
-
-                                                                            </div><!-- /.single-item -->
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div *ngIf="detailschambre == true">
+                                                                            {{chambre[0].type_name}}
+                                                                            <p class="item-quote">
+                                                                                {{chambre[0].type_desc}}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="foodchef-tab-content">
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                </div>
-                                                                <div class="foodchef-tab-content">
-                                                                    <div class="itemlistpopup">
-                                                                        <div class="col-sm-12">
-                                                                            <div class="single-item">
-                                                                                <div class="item-image">
-                                                                                    <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/food.jpg" alt="image_alt">
-                                                                                </div>
-                                                                                <div class="item-info">
-                                                                                    <span class="via">The Title <i class="circle-box"><span class="path1"><i class="fa fa-circle NonVeg"></i></span></i></span>
-                                                                                    <span class="rate" data-rate="5">
-                                                                                        <i class="fa fa-star"></i>4.3
-
-
-                                                                                    </span>
-                                                                                </div>
-                                                                                <p class="item-quote">
-                                                                                    This is a dummy text and can be changed as per your requirement.
-                                                                                </p>
-                                                                                <div class="item-price">
-                                                                                    <!-- getting dish price html -->
-                                                                                    <span class="pull-left"><i class="fa fa-usd"></i>220</span>
-                                                                                    <span class="item-taste-content">Category</span>
-                                                                                </div>
-                                                                            </div><!-- /.single-item -->
-                                                                        </div>
-                                                                        <div class="col-sm-12">
-                                                                            <div class="single-item">
-                                                                                <div class="item-image">
-                                                                                    <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/food.jpg" alt="image_alt">
-                                                                                </div>
-                                                                                <div class="item-info">
-                                                                                    <span class="via">The Title <i class="circle-box"><span class="path1"><i class="fa fa-circle Veg"></i></span></i></span>
-                                                                                    <span class="rate" data-rate="5">
-                                                                                        <i class="fa fa-star"></i>4.3
-
-
-                                                                                    </span>
-                                                                                </div>
-                                                                                <p class="item-quote">
-                                                                                    This is a dummy text and can be changed as per your requirement.
-                                                                                </p>
-                                                                                <div class="item-price">
-                                                                                    <!-- getting dish price html -->
-                                                                                    <span class="pull-left"><i class="fa fa-usd"></i>220</span>
-
-                                                                                    <span class="item-taste-content">Category</span>
-
-                                                                                </div>
-
-                                                                            </div><!-- /.single-item -->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="foodchef-tab-content">
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                    <article class="chef-list">
-
-                                                                        <div class="menu-box-image">
-                                                                            <a href="#" class="agent-box-image-inner">
-                                                                                <img src="http://gowebbi.in/demo44/foodzzap/popup-tab/images/chef.jpg" alt="img" class="img-circle">
-                                                                            </a>
-                                                                        </div>
-
-                                                                        <div class="entry-content">
-                                                                            <h6 class="entry-title"><a href="#">Chef Name</a></h6>
-                                                                            <div class="menu-description">
-                                                                                FoodZzap MasterChef
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </article>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -6,6 +6,7 @@ import { HotelService } from './service/hotel.service';
 import { CityService } from './service/city.service';
 import { Hotel } from './classe/hotel';
 import { HotelAvance } from './classe/hotel';
+import { RoomTypeAvance } from './classe/roomtype';
 import { City } from './classe/city';
 import { RouteParams } from 'angular2/router';
 declare var google: any;
@@ -18,39 +19,23 @@ import {Headers} from 'angular2/http';
 
 export class AllHComponent {
 
-    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+    v: City = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1, "hotelier": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
     roomtypes: HotelAvance[] = [{
         "id": 1,
-        "roomtypes": [
-            {
-                "id": 1,
-                "images": [
-                    {
-                        "id": 1,
-                        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-                        "room_type": 1
-                    }
-                ],
-                "type_name": "Chambre Standard",
-                "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
-                "type_price": 126.0,
-                "hotel": 1
-            },
-            {
-                "id": 2,
-                "images": [
-                    {
-                        "id": 4,
-                        "image_path": "https://media-cdn.tripadvisor.com/media/photo-s/03/d8/51/07/hotel-victoria-chatelet.jpg",
-                        "room_type": 2
-                    }
-                ],
-                "type_name": "Chambre Supérieure",
-                "type_desc": "Doubles ou twin, joliment décorées et colorées, elles invitent à la douceur de vivre au cœur du 1er arrondissement. Les atouts de la capitale… le calme et la convivialité en plus !",
-                "type_price": 170.0,
-                "hotel": 1
-            }
-        ],
+        "roomtypes": [{
+            "id": 1,
+            "images": [
+                {
+                    "id": 1,
+                    "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                    "room_type": 1
+                }
+            ],
+            "type_name": "Chambre Standard",
+            "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+            "type_price": 126.0,
+            "hotel": 1
+        }],
         "hotel_name": "Hotel Victoria Chatelet",
         "hotel_desc": "Hotel Victoria Chatelet",
         "hotel_lat": 48.857841,
@@ -58,11 +43,23 @@ export class AllHComponent {
         "adr": "17 Avenue Victoria",
         "image": "http://www.hotel-victoria-chatelet.com/media/img/home/vignette3.jpg",
         "stars": 3.0,
-        "city": 1
+        "city": 1,
+        "hotelier": 1
+    }];
+    chambre: RoomTypeAvance[] = [{
+        "id": 1,
+        "images": [{
+            "id": 1,
+            "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+            "room_type": 1
+        }],
+        "type_name": "Chambre Standard",
+        "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+        "type_price": 126.0,
+        "hotel": 1
     }];
     detailshotel: boolean = false;
     detailschambre: boolean = false;
-    idchambre: number;
     sTimeout: any;
     image: string;
     us: number = 0;
@@ -81,8 +78,9 @@ export class AllHComponent {
     afficherdetails(id: number) {
         if (id != 999) {
             this.detailschambre = true;
-            this.idchambre = id;
-        } else {
+            this._hotelService.getChambreByHotel(id)
+                .subscribe(data => this.chambre = data);
+        }else {
             this.detailschambre = false;
         }
     }

@@ -10,6 +10,7 @@ export class Hotel {
     image: string;
     stars: number;
     city: number;
+    hotelier: number;
 }
 
 export class HotelAvance {
@@ -23,4 +24,5 @@ export class HotelAvance {
     image: string;
     stars: number;
     city: number;
+    hotelier: number;
 }
