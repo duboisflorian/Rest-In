@@ -24,4 +24,9 @@ export class UtilisateurService {
             .map(data => data.json());
     }
 
+    getUserType(id: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/usertype/' + id)
+            .map(data => data.json());
+    }
+
 }

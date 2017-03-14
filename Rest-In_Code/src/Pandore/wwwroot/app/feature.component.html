@@ -13,7 +13,8 @@
                             <ul class="nav masthead-nav" *ngIf="us!=0">
                                 <li ><a (click)="goHome()">Accueil</a></li>
                                 <li class="active"><a>Informations</a></li>
-                                <li><a>Mes reservations</a></li>
+                                <li *ngIf="us_type==0"><a>Mes reservations</a></li>
+                                <li *ngIf="us_type==1"><a>Mon hotel</a></li>
                                 <li><a (click)="gotoDeco()">Se déconnecter</a></li>
                             </ul>
                             <ul class="nav masthead-nav" *ngIf="us==0">

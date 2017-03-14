@@ -16,13 +16,19 @@ export class FeatureComponent {
     image: string;
     utilisateur: Utilisateur;
     us: number = 0;
+    us_type: number = 0;
 
     constructor(
         private _router: Router,
-        private _routeParams: RouteParams) { }
+        private _routeParams: RouteParams,
+        private _uService: UtilisateurService) { }
 
     ngOnInit() {
         this.us = +this._routeParams.get('us');
+
+        if (this.us != 0)
+            this._uService.getUserType(this.us)
+                .subscribe(data => this.us_type = data);
 
         this.image = "acc1.jpg";
         Observable.interval(30000)
