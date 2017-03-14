@@ -5,4 +5,10 @@ var Hotel = (function () {
     return Hotel;
 }());
 exports.Hotel = Hotel;
+var HotelAvance = (function () {
+    function HotelAvance() {
+    }
+    return HotelAvance;
+}());
+exports.HotelAvance = HotelAvance;
 //# sourceMappingURL=hotel.js.map

@@ -22,6 +22,14 @@ var HotelService = (function () {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
+    HotelService.prototype.getHotelWithRoomTypes = function (i) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels_roomtypes/' + i + '.json')
+            .map(function (data) { return data.json(); });
+    };
+    HotelService.prototype.getChambreByHotel = function (i) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/rtimages/' + i + '.json')
+            .map(function (data) { return data.json(); });
+    };
     HotelService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

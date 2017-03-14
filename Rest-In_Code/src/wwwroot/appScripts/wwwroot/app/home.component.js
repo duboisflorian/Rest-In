@@ -13,17 +13,23 @@ var router_1 = require('angular2/router');
 var Rx_1 = require('rxjs/Rx');
 var city_service_1 = require('./service/city.service');
 var router_2 = require('angular2/router');
+var utilisateur_service_1 = require('./service/utilisateur.service');
 var HomeComponent = (function () {
-    function HomeComponent(_router, _routeParams, _cityService) {
+    function HomeComponent(_router, _routeParams, _uService, _cityService) {
         this._router = _router;
         this._routeParams = _routeParams;
+        this._uService = _uService;
         this._cityService = _cityService;
         this.us = 0;
+        this.us_type = 0;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var x = +this._routeParams.get('us');
         this.us = x;
+        if (this.us != 0)
+            this._uService.getUserType(this.us)
+                .subscribe(function (data) { return _this.us_type = data; });
         this._cityService.getAll()
             .subscribe(function (data) { return _this.cities = data; });
         this.image = "acc1.jpg";
@@ -63,12 +69,18 @@ var HomeComponent = (function () {
     HomeComponent.prototype.goHome = function () {
         this._router.navigate(['Home']);
     };
+    HomeComponent.prototype.goHotel = function () {
+        if (this.us != 0)
+            this._router.navigate(['Hotel', { us: this.us }]);
+        else
+            this._router.navigate(['Hotel']);
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'my-home',
             templateUrl: 'app/home.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_2.RouteParams, city_service_1.CityService])
+        __metadata('design:paramtypes', [router_1.Router, router_2.RouteParams, utilisateur_service_1.UtilisateurService, city_service_1.CityService])
     ], HomeComponent);
     return HomeComponent;
 }());

@@ -5,4 +5,4 @@ var RoomImage = (function () {
     return RoomImage;
 }());
 exports.RoomImage = RoomImage;
-//# sourceMappingURL=RoomImage.js.map
+//# sourceMappingURL=roomimage.js.map

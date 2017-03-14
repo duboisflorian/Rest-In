@@ -11,6 +11,8 @@ import { City } from './classe/city';
 import { RouteParams } from 'angular2/router';
 declare var google: any;
 import {Headers} from 'angular2/http';
+import { UtilisateurService } from './service/utilisateur.service';
+import { Utilisateur } from './classe/utilisateur';
 
 @Component({
     selector: 'my-allh', providers: [HTTP_PROVIDERS],
@@ -63,11 +65,13 @@ export class AllHComponent {
     sTimeout: any;
     image: string;
     us: number = 0;
+    us_type: number = 0;
 
     constructor(
         private _router: Router,
         private _hotelService: HotelService,
         private _routeParams: RouteParams,
+        private _uService: UtilisateurService,
         private _cityService: CityService) { }
 
     onClickMe(v: Hotel) {
@@ -84,13 +88,16 @@ export class AllHComponent {
             this.detailschambre = false;
         }
     }
-    gotoCo() {
-        this._router.navigate(['Co']);
-    }
     
     ngOnInit() {
         let x = +this._routeParams.get('us');
         this.us = x;
+
+
+        if (this.us != 0)
+            this._uService.getUserType(this.us)
+                .subscribe(data => this.us_type = data);
+
         let id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(data => this.v = data);
@@ -135,15 +142,23 @@ export class AllHComponent {
             });
 
     }
-    goAllH() {
-        let id = +this._routeParams.get('id');
-        this._router.navigate(['Allh', { id: id }]);
-    }
     goHome() {
-            if (this.us != 0)
-                this._router.navigate(['Home', { us: this.us }]);
-            else
-                this._router.navigate(['Home']);
+        if (this.us != 0)
+            this._router.navigate(['Home', { us: this.us }]);
+        else
+            this._router.navigate(['Home']);
+    }
+    gotoCo() {
+        this._router.navigate(['Co']);
+    }
+    gotoDeco() {
+        this._router.navigate(['Home']);
+    }
+    goHotel() {
+        if (this.us != 0)
+            this._router.navigate(['Hotel', { us: this.us }]);
+        else
+            this._router.navigate(['Hotel']);
     }
 
 }

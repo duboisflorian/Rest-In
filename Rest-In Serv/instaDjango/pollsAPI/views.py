@@ -485,7 +485,7 @@ def InfoHotel(request, pk, format=None):
 def UserH(request, pk, format=None):
 
     try:
-        r = User.objects.get(hotel=pk)
+        r = User.objects.get(id=pk)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

@@ -6,15 +6,15 @@
                     <div class="inner">
                         <h3 class="masthead-brand">Rest-In</h3>
                         <nav>
-
-                            <ul class="nav masthead-nav" *ngIf="us==0">
-                                <li ><a (click)="goHome()">Accueil</a></li>
-                                <li><a (click)="gotoCo()">Se connecter</a></li>
-                            </ul>
                             <ul class="nav masthead-nav" *ngIf="us!=0">
                                 <li><a (click)="goHome()">Accueil</a></li>
-                                <li><a>Mes reservations</a></li>
-                                <li><a (click)="goAllH()">Se déconnecter</a></li>
+                                <li *ngIf="us_type==0"><a>Mes reservations</a></li>
+                                <li *ngIf="us_type==1"><a (click)="goHotel()">Mon hotel</a></li>
+                                <li><a (click)="gotoDeco()">Se déconnecter</a></li>
+                            </ul>
+                            <ul class="nav masthead-nav" *ngIf="us==0">
+                                <li><a (click)="goHome()">Accueil</a></li>
+                                <li><a (click)="gotoCo()">Se connecter</a></li>
                             </ul>
                         </nav>
                     </div>

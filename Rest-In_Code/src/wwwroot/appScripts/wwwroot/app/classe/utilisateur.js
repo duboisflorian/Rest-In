@@ -5,4 +5,10 @@ var Utilisateur = (function () {
     return Utilisateur;
 }());
 exports.Utilisateur = Utilisateur;
+var UtilisateurH = (function () {
+    function UtilisateurH() {
+    }
+    return UtilisateurH;
+}());
+exports.UtilisateurH = UtilisateurH;
 //# sourceMappingURL=utilisateur.js.map

@@ -15,17 +15,18 @@ var http_1 = require('angular2/http');
 var hotel_service_1 = require('./service/hotel.service');
 var city_service_1 = require('./service/city.service');
 var router_2 = require('angular2/router');
+var utilisateur_service_1 = require('./service/utilisateur.service');
 var AllHComponent = (function () {
-    function AllHComponent(_router, _hotelService, _routeParams, _cityService) {
+    function AllHComponent(_router, _hotelService, _routeParams, _uService, _cityService) {
         this._router = _router;
         this._hotelService = _hotelService;
         this._routeParams = _routeParams;
+        this._uService = _uService;
         this._cityService = _cityService;
-        this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
+        this.v = { "id": 1, "hotels": [{ "id": 1, "hotel_name": "", "hotel_desc": "", "hotel_lat": 0, "hotel_long": 0, "adr": "", "image": "", "stars": 0, "city": 1, "hotelier": 1 }], "city_name": "", "city_lat": 0, "city_long": 0 };
         this.roomtypes = [{
                 "id": 1,
-                "roomtypes": [
-                    {
+                "roomtypes": [{
                         "id": 1,
                         "images": [
                             {
@@ -38,22 +39,7 @@ var AllHComponent = (function () {
                         "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
                         "type_price": 126.0,
                         "hotel": 1
-                    },
-                    {
-                        "id": 2,
-                        "images": [
-                            {
-                                "id": 4,
-                                "image_path": "https://media-cdn.tripadvisor.com/media/photo-s/03/d8/51/07/hotel-victoria-chatelet.jpg",
-                                "room_type": 2
-                            }
-                        ],
-                        "type_name": "Chambre Supérieure",
-                        "type_desc": "Doubles ou twin, joliment décorées et colorées, elles invitent à la douceur de vivre au cœur du 1er arrondissement. Les atouts de la capitale… le calme et la convivialité en plus !",
-                        "type_price": 170.0,
-                        "hotel": 1
-                    }
-                ],
+                    }],
                 "hotel_name": "Hotel Victoria Chatelet",
                 "hotel_desc": "Hotel Victoria Chatelet",
                 "hotel_lat": 48.857841,
@@ -61,13 +47,25 @@ var AllHComponent = (function () {
                 "adr": "17 Avenue Victoria",
                 "image": "http://www.hotel-victoria-chatelet.com/media/img/home/vignette3.jpg",
                 "stars": 3.0,
-                "city": 1
+                "city": 1,
+                "hotelier": 1
+            }];
+        this.chambre = [{
+                "id": 1,
+                "images": [{
+                        "id": 1,
+                        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                        "room_type": 1
+                    }],
+                "type_name": "Chambre Standard",
+                "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+                "type_price": 126.0,
+                "hotel": 1
             }];
         this.detailshotel = false;
         this.detailschambre = false;
-        this.onglethotel = true;
-        this.ongletchambre = false;
         this.us = 0;
+        this.us_type = 0;
     }
     AllHComponent.prototype.onClickMe = function (v) {
         var _this = this;
@@ -76,20 +74,23 @@ var AllHComponent = (function () {
             .subscribe(function (data) { return _this.roomtypes = data; });
     };
     AllHComponent.prototype.afficherdetails = function (id) {
+        var _this = this;
         if (id != 999) {
             this.detailschambre = true;
+            this._hotelService.getChambreByHotel(id)
+                .subscribe(function (data) { return _this.chambre = data; });
         }
         else {
             this.detailschambre = false;
         }
     };
-    AllHComponent.prototype.gotoCo = function () {
-        this._router.navigate(['Co']);
-    };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;
         var x = +this._routeParams.get('us');
         this.us = x;
+        if (this.us != 0)
+            this._uService.getUserType(this.us)
+                .subscribe(function (data) { return _this.us_type = data; });
         var id = +this._routeParams.get('id');
         this._cityService.getCityH(id)
             .subscribe(function (data) { return _this.v = data; });
@@ -129,22 +130,30 @@ var AllHComponent = (function () {
             _this.image = "acc" + y + ".jpg";
         });
     };
-    AllHComponent.prototype.goAllH = function () {
-        var id = +this._routeParams.get('id');
-        this._router.navigate(['Allh', { id: id }]);
-    };
     AllHComponent.prototype.goHome = function () {
         if (this.us != 0)
             this._router.navigate(['Home', { us: this.us }]);
         else
             this._router.navigate(['Home']);
     };
+    AllHComponent.prototype.gotoCo = function () {
+        this._router.navigate(['Co']);
+    };
+    AllHComponent.prototype.gotoDeco = function () {
+        this._router.navigate(['Home']);
+    };
+    AllHComponent.prototype.goHotel = function () {
+        if (this.us != 0)
+            this._router.navigate(['Hotel', { us: this.us }]);
+        else
+            this._router.navigate(['Hotel']);
+    };
     AllHComponent = __decorate([
         core_1.Component({
             selector: 'my-allh', providers: [http_1.HTTP_PROVIDERS],
             templateUrl: 'app/allh.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, hotel_service_1.HotelService, router_2.RouteParams, city_service_1.CityService])
+        __metadata('design:paramtypes', [router_1.Router, hotel_service_1.HotelService, router_2.RouteParams, utilisateur_service_1.UtilisateurService, city_service_1.CityService])
     ], AllHComponent);
     return AllHComponent;
 }());
