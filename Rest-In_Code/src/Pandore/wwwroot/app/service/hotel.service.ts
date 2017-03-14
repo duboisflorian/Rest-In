@@ -17,4 +17,9 @@ export class HotelService {
             .map(data => data.json());
     }
 
+    getHotelWithRoomTypes(i: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels_roomtypes/' + i + '.json')
+            .map(data => data.json());
+    }
+
 }
