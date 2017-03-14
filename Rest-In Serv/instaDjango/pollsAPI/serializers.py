@@ -32,7 +32,7 @@ class HotelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class HotelRTSerializer(serializers.ModelSerializer):
-    roomtypes = RoomTypeSerializer(
+    roomtypes = RoomTypeImagesSerializer(
         read_only=True,
         many=True,
     )
