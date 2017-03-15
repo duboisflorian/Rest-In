@@ -62,10 +62,21 @@ var AllHComponent = (function () {
                 "type_price": 126.0,
                 "hotel": 1
             }];
+        this.first_images_chambre = {
+            "id": 1,
+            "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+            "room_type": 1
+        };
+        this.next_images_chambre = [{
+                "id": 1,
+                "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                "room_type": 1
+            }];
         this.detailshotel = false;
         this.detailschambre = false;
         this.us = 0;
         this.us_type = 0;
+        this.act = 0;
     }
     AllHComponent.prototype.onClickMe = function (v) {
         var _this = this;
@@ -76,9 +87,17 @@ var AllHComponent = (function () {
     AllHComponent.prototype.afficherdetails = function (id) {
         var _this = this;
         if (id != 999) {
+            this.act = id;
             this.detailschambre = true;
             this._hotelService.getChambreByHotel(id)
                 .subscribe(function (data) { return _this.chambre = data; });
+            this.first_images_chambre = this.chambre[id].images[0];
+            for (var i = 0; i < this.chambre.length; i++) {
+                if (i = 0) {
+                    continue;
+                }
+                this.next_images_chambre.push(this.chambre[id].images[i]);
+            }
         }
         else {
             this.detailschambre = false;

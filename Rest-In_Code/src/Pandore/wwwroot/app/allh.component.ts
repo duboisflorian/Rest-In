@@ -7,6 +7,7 @@ import { CityService } from './service/city.service';
 import { Hotel } from './classe/hotel';
 import { HotelAvance } from './classe/hotel';
 import { RoomTypeAvance } from './classe/roomtype';
+import { RoomImage } from './classe/roomimage';
 import { City } from './classe/city';
 import { RouteParams } from 'angular2/router';
 declare var google: any;
@@ -60,6 +61,16 @@ export class AllHComponent {
         "type_price": 126.0,
         "hotel": 1
     }];
+    first_images_chambre: RoomImage = {
+        "id": 1,
+        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+        "room_type": 1
+    };
+    next_images_chambre: RoomImage[] = [{
+        "id": 1,
+        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+        "room_type": 1
+    }];
     detailshotel: boolean = false;
     detailschambre: boolean = false;
     search: string;
@@ -89,6 +100,13 @@ export class AllHComponent {
             this.detailschambre = true;
             this._hotelService.getChambreByHotel(id)
                 .subscribe(data => this.chambre = data);
+            this.first_images_chambre = this.chambre[id].images[0];
+            for (var i = 0; i < this.chambre.length; i++) {
+                if (i = 0) {
+                    continue;
+                }
+                this.next_images_chambre.push(this.chambre[id].images[i]);
+            }
         }else {
             this.detailschambre = false;
         }
