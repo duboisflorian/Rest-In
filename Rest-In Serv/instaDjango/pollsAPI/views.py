@@ -255,7 +255,7 @@ def RoomTypeDetail(request, pk,format=None):
 
     elif request.method == 'DELETE':
         room_types.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response("supprime")
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def CityHDetail(request, pk,format=None):
@@ -504,3 +504,10 @@ def RTImages(request, pk, format=None):
     if request.method == 'GET':
         serializer = RoomTypeImagesSerializer(r, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def AddRT(request, name, desc, price,id, format=None):
+
+    h = Hotel.objects.get(id=id)
+    RoomType.objects.create(type_name=name,type_desc=desc,type_price=price,hotel=h)
+    return Response("cree")

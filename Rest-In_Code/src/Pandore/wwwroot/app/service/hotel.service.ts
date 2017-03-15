@@ -27,4 +27,12 @@ export class HotelService {
             .map(data => data.json());
     }
 
+    addRT(name: string, desc: string, price: string, id: number) {
+       return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name  +'/' + desc + '/' + price + '/' + id )
+            .map(data => data.json());
+    }
+
+    deleteRT( id: number) {
+        return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomtypes/' + id).map(data => data.json());
+    }
 }

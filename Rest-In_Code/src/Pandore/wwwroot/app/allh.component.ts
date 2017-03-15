@@ -61,16 +61,20 @@ export class AllHComponent {
         "type_price": 126.0,
         "hotel": 1
     }];
-    first_images_chambre: RoomImage = {
+
+    chambreb: RoomTypeAvance[] = [{
         "id": 1,
-        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-        "room_type": 1
-    };
-    next_images_chambre: RoomImage[] = [{
-        "id": 1,
-        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-        "room_type": 1
+        "images": [{
+            "id": 1,
+            "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+            "room_type": 1
+        }],
+        "type_name": "Chambre Standard",
+        "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+        "type_price": 126.0,
+        "hotel": 1
     }];
+
     detailshotel: boolean = false;
     detailschambre: boolean = false;
     search: string;
@@ -81,6 +85,7 @@ export class AllHComponent {
     us: number = 0;
     us_type: number = 0;
     act: number = 0;
+    nb_image: number=0;
 
     constructor(
         private _router: Router,
@@ -96,17 +101,29 @@ export class AllHComponent {
     }
     afficherdetails(id: number) {
         if (id != 999) {
+            this.detailschambre = false;
             this.act = id;
-            this.detailschambre = true;
+            this.chambre[0].type_name = "";
+            this.chambre[0].type_desc= "";
+            this.nb_image = 0;
             this._hotelService.getChambreByHotel(id)
-                .subscribe(data => this.chambre = data);
-            this.first_images_chambre = this.chambre[id].images[0];
-            for (var i = 0; i < this.chambre.length; i++) {
-                if (i = 0) {
-                    continue;
-                }
-                this.next_images_chambre.push(this.chambre[id].images[i]);
+                .subscribe(data => this.chambreb = data);
+            this.sTimeout = setTimeout(() => {
+            if (this.chambreb[0].images.length == 0) {
+                this.chambre = this.chambreb;
+                this.chambre[0].images[0] = {
+                    "id": 1,
+                    "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                    "room_type": 1
+                };
+                this.nb_image = 0;
+            } else {
+                this.chambre = this.chambreb;
+                this.nb_image = this.chambre[0].images.length;
             }
+
+            }, 200);
+            this.detailschambre = true;
         }else {
             this.detailschambre = false;
         }

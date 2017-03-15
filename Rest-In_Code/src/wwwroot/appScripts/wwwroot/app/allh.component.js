@@ -62,21 +62,24 @@ var AllHComponent = (function () {
                 "type_price": 126.0,
                 "hotel": 1
             }];
-        this.first_images_chambre = {
-            "id": 1,
-            "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-            "room_type": 1
-        };
-        this.next_images_chambre = [{
+        this.chambreb = [{
                 "id": 1,
-                "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-                "room_type": 1
+                "images": [{
+                        "id": 1,
+                        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                        "room_type": 1
+                    }],
+                "type_name": "Chambre Standard",
+                "type_desc": "Des chambres cosy et fonctionnelles au décor classique pour des séjours privés ou professionnels au cœur de Paris. Elles possèdent tout le confort dont vous avez besoin",
+                "type_price": 126.0,
+                "hotel": 1
             }];
         this.detailshotel = false;
         this.detailschambre = false;
         this.us = 0;
         this.us_type = 0;
         this.act = 0;
+        this.nb_image = 0;
     }
     AllHComponent.prototype.onClickMe = function (v) {
         var _this = this;
@@ -89,15 +92,21 @@ var AllHComponent = (function () {
         if (id != 999) {
             this.act = id;
             this.detailschambre = true;
+            this.nb_image = 0;
             this._hotelService.getChambreByHotel(id)
-                .subscribe(function (data) { return _this.chambre = data; });
-            this.first_images_chambre = this.chambre[id].images[0];
-            for (var i = 0; i < this.chambre.length; i++) {
-                if (i = 0) {
-                    continue;
-                }
-                this.next_images_chambre.push(this.chambre[id].images[i]);
+                .subscribe(function (data) { return _this.chambreb = data; });
+            if (this.chambreb[0].images.length == 0) {
+                this.chambre = this.chambreb;
+                this.chambre[0].images[0] = {
+                    "id": 1,
+                    "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                    "room_type": 1
+                };
             }
+            else {
+                this.chambre = this.chambreb;
+            }
+            this.nb_image = this.chambre[0].images.length;
         }
         else {
             this.detailschambre = false;

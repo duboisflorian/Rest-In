@@ -47,6 +47,7 @@ var HotelComponent = (function () {
                 "city": 1,
                 "hotelier": 0
             }];
+        this.formrt = false;
     }
     HotelComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -67,6 +68,34 @@ var HotelComponent = (function () {
     };
     HotelComponent.prototype.gotoDeco = function () {
         this._router.navigate(['Home']);
+    };
+    HotelComponent.prototype.formRT = function () {
+        this.formrt = true;
+    };
+    HotelComponent.prototype.closeRT = function () {
+        this.formrt = false;
+        this.name = "";
+        this.desc = "";
+        this.price = "";
+    };
+    HotelComponent.prototype.addRT = function () {
+        var _this = this;
+        this._hService.addRT(this.name, this.desc, this.price, this.userh.hotel[0].id)
+            .subscribe(function (data) { return _this.message = data; });
+        this.closeRT();
+        this.sTimeout = setTimeout(function () {
+            _this._hService.getHotelWithRoomTypes(_this.userh.hotel[0].id)
+                .subscribe(function (data) { return _this.rt = data; });
+        }, 400);
+    };
+    HotelComponent.prototype.deleteRT = function (id) {
+        var _this = this;
+        this._hService.deleteRT(id)
+            .subscribe(function (data) { return _this.message = data; });
+        this.sTimeout = setTimeout(function () {
+            _this._hService.getHotelWithRoomTypes(_this.userh.hotel[0].id)
+                .subscribe(function (data) { return _this.rt = data; });
+        }, 400);
     };
     HotelComponent = __decorate([
         core_1.Component({

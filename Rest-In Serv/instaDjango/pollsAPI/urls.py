@@ -43,6 +43,7 @@ urlpatterns = [
     url('^roomD/(?P<pk>[0-9]+)$', views.RoomDDetail),
     url('^roomimages/$', views.RoomImagesList),
     url('^rtimages/(?P<pk>[0-9]+)$', views.RTImages),
+    url('^addrt/(?P<name>[A-Za-z0-9]+)/(?P<desc>[A-Za-z0-9]+)/(?P<price>[A-Za-z0-9]+)/(?P<id>[0-9]+)$', views.AddRT),
     url('^roomimages/(?P<pk>[0-9]+)$', views.RoomImagesDetail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

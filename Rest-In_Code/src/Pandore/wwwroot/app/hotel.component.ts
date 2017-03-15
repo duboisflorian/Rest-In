@@ -45,6 +45,12 @@ export class HotelComponent {
         "city": 1,
         "hotelier": 0
     }];
+    formrt: boolean = false;
+    name: string;
+    price: string;
+    desc: string;
+    message: string;
+
     constructor(
         private _router: Router,
         private _routeParams: RouteParams,
@@ -71,5 +77,34 @@ export class HotelComponent {
     }
     gotoDeco() {
         this._router.navigate(['Home']);
+    }
+
+    formRT() {
+        this.formrt = true;
+    }
+    closeRT() {
+        this.formrt = false;
+        this.name = "";
+        this.desc = "";
+        this.price = "";
+    }
+
+    addRT() {
+        this._hService.addRT(this.name, this.desc, this.price, this.userh.hotel[0].id)
+            .subscribe(data => this.message = data);
+        this.closeRT();
+        this.sTimeout = setTimeout(() => {
+            this._hService.getHotelWithRoomTypes(this.userh.hotel[0].id)
+                .subscribe(data => this.rt = data);
+        }, 400);
+    }
+
+    deleteRT(id:number) {
+        this._hService.deleteRT(id)
+            .subscribe(data => this.message = data);
+        this.sTimeout = setTimeout(() => {
+            this._hService.getHotelWithRoomTypes(this.userh.hotel[0].id)
+                .subscribe(data => this.rt = data);
+        }, 400);
     }
 }
