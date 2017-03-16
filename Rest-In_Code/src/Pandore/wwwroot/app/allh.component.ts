@@ -14,6 +14,7 @@ declare var google: any;
 import {Headers} from 'angular2/http';
 import { UtilisateurService } from './service/utilisateur.service';
 import { Utilisateur } from './classe/utilisateur';
+import { RoomDispo, RoomReserv } from './classe/room';
 
 @Component({
     selector: 'my-allh', providers: [HTTP_PROVIDERS],
@@ -75,7 +76,39 @@ export class AllHComponent {
         "hotel": 1
     }];
 
+    dispos: RoomDispo[] = [{
+        "id": 1,
+        "dispo": [
+            {
+                "id": 1,
+                "dispo_start": "2017-03-01",
+                "dispo_end": "2018-03-01",
+                "room": 1
+            }
+        ],
+        "room_name": "101",
+        "room_floor": 1.0,
+        "room_type": 1
+    }];
+
+    reservs: RoomReserv[] = [{
+        "id": 1,
+        "reserv": [
+            {
+                "id": 1,
+                "reserv_start": "2017-04-01",
+                "reserv_end": "2017-04-15",
+                "room": 1,
+                "client": 7
+            }
+        ],
+        "room_name": "101",
+        "room_floor": 1.0,
+        "room_type": 1
+    }];
+
     detailshotel: boolean = false;
+    recherche: boolean = false;
     detailschambre: boolean = false;
     search: string;
     reserve: boolean = false;
@@ -86,7 +119,9 @@ export class AllHComponent {
     us: number = 0;
     us_type: number = 0;
     act: number = 0;
-    nb_image: number=0;
+    nb_image: number = 0;
+    start: Date;
+    end: Date;
 
     constructor(
         private _router: Router,
@@ -102,6 +137,8 @@ export class AllHComponent {
     }
     afficherdetails(id: number) {
         this.reserve = false;
+        this.start = null;
+        this.end = null;
         if (id != 999) {
             this.detailschambre = false;
             this.act = id;
@@ -134,7 +171,71 @@ export class AllHComponent {
     reserver() {
         this.reserve = true;
     }
-    
+
+    transform(date: string) {
+        let reggie = /(\d{4})-(\d{2})-(\d{2})/;
+        let dateArray = reggie.exec(date);
+        let dateObject = new Date(
+            (+dateArray[1]),
+            ((+dateArray[2])) - 1, // Careful, month starts at 0!
+            (+dateArray[3])
+        );
+        return dateObject;
+    }
+
+    reserverchambre() {
+        this._hotelService.afficherdispobyRT(this.act)
+            .subscribe(data => this.dispos = data);   
+        this._hotelService.afficherreservbyRT(this.act)
+            .subscribe(data => this.reservs = data); 
+
+        this.sTimeout = setTimeout(() => {
+            var ct = 0;
+            //pour chaque chambre dispo
+            for (var a = 0; a < this.dispos.length; a++) {
+                // si il y a une dispo
+                if (this.dispos[a].dispo.length > 0) {
+                    // pour chaque dispo
+                    for (var b = 0; b < this.dispos[a].dispo.length; b++) {
+                        // si les dates sont comprisent dans la dispo
+                        if ((this.start >= this.transform(this.dispos[a].dispo[b].dispo_start) && this.start <= this.transform(this.dispos[a].dispo[b].dispo_end)) && (this.end >= this.transform(this.dispos[a].dispo[b].dispo_start) && this.end <= this.transform(this.dispos[a].dispo[b].dispo_end))) {
+                            //alors on regarde pour chaque chambre les réservations
+                            for (var c = 0; c < this.reservs.length; c++) {
+                                // si c'est la meme chambre
+                                if (this.dispos[a].id == this.reservs[c].id) {
+                                    //si il y a pas de reservation
+                                    if (this.reservs[c].reserv.length == 0) {
+                                        //creer reservation
+                                        //exit
+                                    } else {
+
+                                        ct = 0;
+
+                                        // pour chaque reservation
+                                        for (var d = 0; d < this.reservs[c].reserv.length; d++) {
+                                            // si les dates sont pas comprise dans les reservations
+                                            if ((this.start < this.transform(this.reservs[c].reserv[d].reserv_start) || this.start > this.transform(this.reservs[c].reserv[d].reserv_end)) && (this.end < this.transform(this.reservs[c].reserv[d].reserv_start) || this.end > this.transform(this.reservs[c].reserv[d].reserv_end))) {
+                                                ct++;
+                                            }
+                                        }
+
+                                        //si il y a pas de reservation durant cette période
+                                        if (ct == 0) {
+                                            //creer reservation
+                                            //exit
+                                        }
+
+                                    }
+                                }
+                            }
+                       }
+                    }
+                }
+            }
+        }, 400);
+
+    }
+
     ngOnInit() {
         let x = +this._routeParams.get('us');
         this.us = x;

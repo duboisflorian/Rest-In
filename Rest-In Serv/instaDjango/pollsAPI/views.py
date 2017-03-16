@@ -575,3 +575,39 @@ def RoomDipoList(request, pk, format=None):
     if request.method == 'GET':
         serializer = RoomWDispoSerializer(r)
         return Response(serializer.data)
+
+@api_view(['GET', 'DELETE'])
+def RoomDipoByRT(request, pk, format=None):
+
+    try:
+        r = Room.objects.filter(room_type=pk)
+    except Room.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomWDispoSerializer(r, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET', 'DELETE'])
+def RoomReservList(request, pk, format=None):
+
+    try:
+        r = Room.objects.get(id=pk)
+    except Room.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomWReservSerializer(r)
+        return Response(serializer.data)
+
+@api_view(['GET', 'DELETE'])
+def RoomReservByRT(request, pk, format=None):
+
+    try:
+        r = Room.objects.filter(room_type=pk)
+    except Room.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomWReservSerializer(r, many=True)
+        return Response(serializer.data)

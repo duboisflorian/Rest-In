@@ -181,9 +181,9 @@ var HotelComponent = (function () {
         this._hService.deleteDispo(id)
             .subscribe(function (data) { return _this.message = data; });
         this.sTimeout = setTimeout(function () {
-            _this._hService.afficherdispo(id)
+            _this._hService.afficherdispo(_this.selectadddispo)
                 .subscribe(function (data) { return _this.dispos = data; });
-        }, 200);
+        }, 300);
     };
     HotelComponent.prototype.addRoom = function () {
         var _this = this;

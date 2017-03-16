@@ -74,7 +74,22 @@ var AllHComponent = (function () {
                 "type_price": 126.0,
                 "hotel": 1
             }];
+        this.dispos = [{
+                "id": 1,
+                "dispo": [
+                    {
+                        "id": 1,
+                        "dispo_start": "2017-03-01",
+                        "dispo_end": "2018-03-01",
+                        "room": 1
+                    }
+                ],
+                "room_name": "101",
+                "room_floor": 1.0,
+                "room_type": 1
+            }];
         this.detailshotel = false;
+        this.recherche = false;
         this.detailschambre = false;
         this.reserve = false;
         this.us = 0;
@@ -91,6 +106,8 @@ var AllHComponent = (function () {
     AllHComponent.prototype.afficherdetails = function (id) {
         var _this = this;
         this.reserve = false;
+        this.start = null;
+        this.end = null;
         if (id != 999) {
             this.detailschambre = false;
             this.act = id;
@@ -122,6 +139,11 @@ var AllHComponent = (function () {
     };
     AllHComponent.prototype.reserver = function () {
         this.reserve = true;
+    };
+    AllHComponent.prototype.reserverchambre = function () {
+        var _this = this;
+        this._hotelService.afficherdispobyRT(this.act)
+            .subscribe(function (data) { return _this.dispos = data; });
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;

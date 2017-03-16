@@ -60,6 +60,7 @@ class RoomD(models.Model):
 
 class RoomR(models.Model):
     room = models.ForeignKey(Room, related_name='reserv', on_delete=models.CASCADE)
+    client = models.ForeignKey(User, related_name='client', on_delete=models.CASCADE)
     reserv_start = models.DateField(null=True, blank=True)
     reserv_end = models.DateField(null=True, blank=True)
 

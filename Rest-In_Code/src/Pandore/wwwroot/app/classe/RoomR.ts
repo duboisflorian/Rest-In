@@ -1,6 +1,7 @@
 ﻿export class RoomR {
     id: number;
     room: number;
-    reserv_start: Date;
-    reserv_end: Date;
+    reserv_start: string;
+    reserv_end: string;
+    client: number;
 }
