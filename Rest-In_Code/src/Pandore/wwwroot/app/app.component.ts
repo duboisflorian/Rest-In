@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { AllHComponent } from './allh.component';
 import { CoComponent } from './co.component';
 import { InComponent } from './in.component';
+import { ReservationComponent } from './reservation.component';
 import { FeatureComponent } from './feature.component';
 import { HotelComponent } from './hotel.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
@@ -58,6 +59,11 @@ import { UtilisateurService } from './service/utilisateur.service';
             path: '/hotel',
             name: 'Hotel',
             component: HotelComponent
+        },
+        {
+            path: '/reservation',
+            name: 'Reservation',
+            component: ReservationComponent
         }
 ])
 export class AppComponent {

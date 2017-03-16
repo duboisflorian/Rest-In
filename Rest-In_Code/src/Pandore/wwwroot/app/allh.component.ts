@@ -203,6 +203,12 @@ export class AllHComponent {
         else
             this._router.navigate(['Hotel']);
     }
+    goReservation() {
+        if (this.us != 0)
+            this._router.navigate(['Reservation', { us: this.us }]);
+        else
+            this._router.navigate(['Reservation']);
+    }
 
     ChangeSearch() {
         var found = 0;

@@ -8,11 +8,11 @@ import { RouteParams } from 'angular2/router';
 
 
 @Component({
-    selector: 'my-feature', providers: [HTTP_PROVIDERS],
-    templateUrl: 'app/feature.component.html'
+    selector: 'my-reservation', providers: [HTTP_PROVIDERS],
+    templateUrl: 'app/reservation.component.html'
 })
 
-export class FeatureComponent {
+export class ReservationComponent {
     image: string;
     utilisateur: Utilisateur;
     us: number = 0;
@@ -39,6 +39,13 @@ export class FeatureComponent {
             });
     }
 
+    goFeature() {
+        if (this.us != 0)
+            this._router.navigate(['Feature', { us: this.us }]);
+        else
+            this._router.navigate(['Feature']);
+    }
+
     goHome() {
         if (this.us != 0)
             this._router.navigate(['Home', { us: this.us }]);
@@ -56,11 +63,5 @@ export class FeatureComponent {
             this._router.navigate(['Hotel', { us: this.us }]);
         else
             this._router.navigate(['Hotel']);
-    }
-    goReservation() {
-        if (this.us != 0)
-            this._router.navigate(['Reservation', { us: this.us }]);
-        else
-            this._router.navigate(['Reservation']);
     }
 }
