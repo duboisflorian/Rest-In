@@ -102,9 +102,9 @@
                 <div class="col-md-6" style="padding-top:5%;bottom: 3%;right: 0;">
 
                     <select class="form-control" style="text-align:center;"  [(ngModel)]="selectrt" (ngModelChange)="changeselectrt()">
-                        <option *ngFor="#chambre of rt.roomtypes" value="{{chambre.id}}">{{chambre.type_name}}</option>
+                        <option *ngFor="#chambre of rt.roomtypes" value={{chambre.id}}>{{chambre.type_name}}</option>
                     </select>
-                    </br></br>
+                    <br/><br/>
                     <table class="table table-striped table-bordered table-list" style="color:darkslategrey;">
                         <thead>
                             <tr>
