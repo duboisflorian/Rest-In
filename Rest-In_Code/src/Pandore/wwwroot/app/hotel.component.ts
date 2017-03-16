@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import { UtilisateurH } from './classe/utilisateur';
 import { HotelAvance } from './classe/hotel';
+import { RoomTypeRoom } from './classe/roomtype';
 import { HotelService } from './service/hotel.service';
 import { UtilisateurService } from './service/utilisateur.service';
 import { RouteParams } from 'angular2/router';
@@ -19,7 +20,7 @@ export class HotelComponent {
     us: number = 0;
     userh: UtilisateurH;
     sTimeout: any;
-    rt: HotelAvance[] = [{
+    rt: HotelAvance = {
         "id": 1,
         "roomtypes": [{
             "id": 1,
@@ -44,12 +45,28 @@ export class HotelComponent {
         "stars": 3.0,
         "city": 1,
         "hotelier": 0
-    }];
+    };
     formrt: boolean = false;
     name: string;
     price: string;
     desc: string;
     message: string;
+    selectrt: number;
+    rooms: RoomTypeRoom = {
+        "id": 1,
+        "rooms": [
+            {
+                "id": 1,
+                "room_name": "101",
+                "room_floor": 1 ,
+                "room_type": 1
+            }
+        ],
+        "type_name": "",
+        "type_desc": "",
+        "type_price": 126.0,
+        "hotel": 1
+    };
 
     constructor(
         private _router: Router,
@@ -66,7 +83,12 @@ export class HotelComponent {
         this.sTimeout = setTimeout(() => {
             this._hService.getHotelWithRoomTypes(this.userh.hotel[0].id)
                 .subscribe(data => this.rt = data);
-        }, 400);
+        }, 200);
+        this.sTimeout = setTimeout(() => {
+            this.selectrt = this.rt.roomtypes[0].id;
+            this._hService.getRoomsByRT(this.selectrt)
+                .subscribe(data => this.rooms = data);
+        }, 300);
     }
 
     goHome() {
@@ -106,5 +128,9 @@ export class HotelComponent {
             this._hService.getHotelWithRoomTypes(this.userh.hotel[0].id)
                 .subscribe(data => this.rt = data);
         }, 400);
+    }
+    changeselectrt() {
+        this._hService.getRoomsByRT(this.selectrt)
+            .subscribe(data => this.rooms = data);
     }
 }

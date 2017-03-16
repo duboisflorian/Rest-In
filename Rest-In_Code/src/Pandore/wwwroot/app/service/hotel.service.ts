@@ -35,4 +35,8 @@ export class HotelService {
     deleteRT( id: number) {
         return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomtypes/' + id).map(data => data.json());
     }
+
+    getRoomsByRT(id: number) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/roomtypesroom/' + id).map(data => data.json());
+    }
 }
