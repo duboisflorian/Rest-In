@@ -101,33 +101,12 @@
 
                 <div class="col-md-6" style="padding-top:5%;bottom: 3%;right: 0;">
 
-                    <div class="tabbable-panel">
-                        <div class="tabbable-line">
-                            <ul class="nav nav-tabs ">
-                                <a *ngFor="#chambre of rt.roomtypes">
-                                    <li *ngIf="chambre.id == rt.roomtypes[0].id" class="active">
-                                    <li *ngIf="chambre.id != rt.roomtypes[0].id ">
-                                        <a href="#chambre.id" data-toggle="tab">
-                                            {{chambre.type_name}}
-                                        </a>
-                                    </li>
-                                </a>
-                            </ul>
-                            <div class="tab-content">
-                                <div *ngFor="#chambre of rt.roomtypes">
-                                    <div *ngIf="chambre.id == rt.roomtypes[0].id" class="tab-pane active" id="chambre.id">
-                                        <div *ngIf="chambre.id != rt.roomtypes[0].id" class="tab-pane active" id="chambre.id">
-                                            <p>
-                                                {{chambre.type_desc}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <select class="form-control" style="text-align:center;"  [(ngModel)]="selectrt" (ngModelChange)="changeselectrt()">
+                        <option *ngFor="#chambre of rt.roomtypes" value="{{chambre.id}}">{{chambre.type_name}}</option>
+                    </select>
+                    <p *ngFor="#room of rooms.rooms">
+                        {{room.id}}
+                    </p>
                 </div>
             </div>
         </div>
