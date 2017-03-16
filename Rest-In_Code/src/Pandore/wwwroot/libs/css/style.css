@@ -7,6 +7,10 @@
   padding: 10px;
 }
 
+.textcolor{
+    color: #696969;
+}
+
 /* Default mode */
 .tabbable-line > .nav-tabs {
   border: none;
@@ -491,7 +495,7 @@ footer {
 .bloc{ 
     width: 100%; 
     margin: auto; 
-    border: 1px solid black; 
+    border: 1px solid rgba(245, 245, 245, 0.8); 
     text-align: justify; 
     padding: 12px; 
     margin-bottom: 20px; 
