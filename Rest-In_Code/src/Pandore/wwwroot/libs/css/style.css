@@ -786,3 +786,9 @@ text-align: center;
       width: 100%;
       margin: auto;
   }
+
+ /* Formulaire reservation */
+
+.form-resa{
+    border:0px;
+}
