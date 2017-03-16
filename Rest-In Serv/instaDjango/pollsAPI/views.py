@@ -538,6 +538,13 @@ def AddRT(request, name, desc, price,id, format=None):
     RoomType.objects.create(type_name=name,type_desc=desc,type_price=price,hotel=h)
     return Response("cree")
 
+@api_view(['GET'])
+def AddRoom(request, name, floor,id, format=None):
+
+    r = RoomType.objects.get(id=id)
+    Room.objects.create(room_name=name,room_floor=floor,room_type=r)
+    return Response("cree")
+
 @api_view(['GET', 'DELETE'])
 def RoomByRT(request, pk, format=None):
 

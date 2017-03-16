@@ -50,6 +50,8 @@ export class HotelComponent {
     name: string;
     price: string;
     desc: string;
+    nom: string;
+    floor: string;
     message: string;
     selectrt: number;
     rooms: RoomTypeRoom = {
@@ -136,6 +138,15 @@ export class HotelComponent {
 
     deleteRoom(id: number) {
         this._hService.deleteRoom(id)
+            .subscribe(data => this.message = data);
+        this.sTimeout = setTimeout(() => {
+            this._hService.getRoomsByRT(this.selectrt)
+                .subscribe(data => this.rooms = data);
+        }, 400);
+    }
+
+    addRoom() {
+        this._hService.addRoom(this.nom, this.floor, this.rooms.id)
             .subscribe(data => this.message = data);
         this.sTimeout = setTimeout(() => {
             this._hService.getRoomsByRT(this.selectrt)
