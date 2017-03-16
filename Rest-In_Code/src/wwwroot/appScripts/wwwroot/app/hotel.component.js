@@ -48,6 +48,8 @@ var HotelComponent = (function () {
             "hotelier": 0
         };
         this.formrt = false;
+        this.formroom = false;
+        this.formdispo = false;
         this.rooms = {
             "id": 1,
             "rooms": [
@@ -62,6 +64,20 @@ var HotelComponent = (function () {
             "type_desc": "",
             "type_price": 126.0,
             "hotel": 1
+        };
+        this.dispos = {
+            "id": 1,
+            "dispo": [
+                {
+                    "id": 1,
+                    "dispo_start": "2017-03-01",
+                    "dispo_end": "2018-03-01",
+                    "room": 1
+                }
+            ],
+            "room_name": "101",
+            "room_floor": 1.0,
+            "room_type": 1
         };
     }
     HotelComponent.prototype.ngOnInit = function () {
@@ -92,11 +108,31 @@ var HotelComponent = (function () {
     HotelComponent.prototype.formRT = function () {
         this.formrt = true;
     };
+    HotelComponent.prototype.formRoom = function () {
+        this.formroom = true;
+    };
+    HotelComponent.prototype.formDispo = function (id) {
+        var _this = this;
+        this._hService.afficherdispo(id)
+            .subscribe(function (data) { return _this.dispos = data; });
+        this.sTimeout = setTimeout(function () {
+            _this.formdispo = true;
+            alert(_this.dispos.dispo[0].dispo_start);
+        }, 200);
+    };
     HotelComponent.prototype.closeRT = function () {
         this.formrt = false;
         this.name = "";
         this.desc = "";
         this.price = "";
+    };
+    HotelComponent.prototype.closeRoom = function () {
+        this.formroom = false;
+        this.nom = "";
+        this.floor = "";
+    };
+    HotelComponent.prototype.closeDispo = function () {
+        this.formdispo = false;
     };
     HotelComponent.prototype.addRT = function () {
         var _this = this;
@@ -121,6 +157,25 @@ var HotelComponent = (function () {
         var _this = this;
         this._hService.getRoomsByRT(this.selectrt)
             .subscribe(function (data) { return _this.rooms = data; });
+    };
+    HotelComponent.prototype.deleteRoom = function (id) {
+        var _this = this;
+        this._hService.deleteRoom(id)
+            .subscribe(function (data) { return _this.message = data; });
+        this.sTimeout = setTimeout(function () {
+            _this._hService.getRoomsByRT(_this.selectrt)
+                .subscribe(function (data) { return _this.rooms = data; });
+        }, 400);
+    };
+    HotelComponent.prototype.addRoom = function () {
+        var _this = this;
+        this._hService.addRoom(this.nom, this.floor, this.rooms.id)
+            .subscribe(function (data) { return _this.message = data; });
+        this.closeRoom();
+        this.sTimeout = setTimeout(function () {
+            _this._hService.getRoomsByRT(_this.selectrt)
+                .subscribe(function (data) { return _this.rooms = data; });
+        }, 400);
     };
     HotelComponent = __decorate([
         core_1.Component({

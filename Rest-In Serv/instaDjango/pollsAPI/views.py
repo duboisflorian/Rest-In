@@ -566,5 +566,5 @@ def RoomDipoList(request, pk, format=None):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = RoomWDispoSerializer(r, many=True)
+        serializer = RoomWDispoSerializer(r)
         return Response(serializer.data)

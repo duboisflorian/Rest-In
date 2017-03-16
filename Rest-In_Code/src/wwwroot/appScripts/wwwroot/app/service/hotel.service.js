@@ -15,30 +15,58 @@ var HotelService = (function () {
         this.http = http;
     }
     HotelService.prototype.getAll = function () {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels.json')
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels.json')
+              .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/hotels.json')
             .map(function (data) { return data.json(); });
     };
     HotelService.prototype.getCity = function (i) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels/' + i + '.json')
+        /*   return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels/' + i + '.json')
+               .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/hotels/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
     HotelService.prototype.getHotelWithRoomTypes = function (i) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels_roomtypes/' + i + '.json')
+        /*return this.http.get('http://127.0.0.1:8000/pollsAPI/hotels_roomtypes/' + i + '.json')
+            .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/hotels_roomtypes/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
     HotelService.prototype.getChambreByHotel = function (i) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/rtimages/' + i + '.json')
+        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/rtimages/' + i + '.json')
+             .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/rtimages/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
     HotelService.prototype.addRT = function (name, desc, price, id) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name + '/' + desc + '/' + price + '/' + id)
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name  +'/' + desc + '/' + price + '/' + id )
+               .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/addrt/' + name + '/' + desc + '/' + price + '/' + id)
             .map(function (data) { return data.json(); });
     };
     HotelService.prototype.deleteRT = function (id) {
-        return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomtypes/' + id).map(function (data) { return data.json(); });
+        /* return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomtypes/' + id).map(data => data.json());*/
+        return this.http.delete('http://172.16.14.52:8000/pollsAPI/roomtypes/' + id).map(function (data) { return data.json(); });
+    };
+    HotelService.prototype.deleteRoom = function (id) {
+        /* return this.http.delete('http://127.0.0.1:8000/pollsAPI/room/' + id).map(data => data.json());*/
+        return this.http.delete('http://172.16.14.52:8000/pollsAPI/room/' + id).map(function (data) { return data.json(); });
     };
     HotelService.prototype.getRoomsByRT = function (id) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/roomtypesroom/' + id).map(function (data) { return data.json(); });
+        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/roomtypesroom/' + id).map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/roomtypesroom/' + id).map(function (data) { return data.json(); });
+    };
+    HotelService.prototype.addRoom = function (name, floor, id) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name + '/' + floor + '/' + id )
+               .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/addroom/' + name + '/' + floor + '/' + id)
+            .map(function (data) { return data.json(); });
+    };
+    HotelService.prototype.afficherdispo = function (id) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/roomDispo/' + id )
+               .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/roomDispo/' + id)
+            .map(function (data) { return data.json(); });
     };
     HotelService = __decorate([
         core_1.Injectable(), 

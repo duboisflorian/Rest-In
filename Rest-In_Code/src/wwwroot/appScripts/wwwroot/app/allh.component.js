@@ -76,6 +76,7 @@ var AllHComponent = (function () {
             }];
         this.detailshotel = false;
         this.detailschambre = false;
+        this.reserve = false;
         this.us = 0;
         this.us_type = 0;
         this.act = 0;
@@ -89,6 +90,7 @@ var AllHComponent = (function () {
     };
     AllHComponent.prototype.afficherdetails = function (id) {
         var _this = this;
+        this.reserve = false;
         if (id != 999) {
             this.detailschambre = false;
             this.act = id;
@@ -117,6 +119,9 @@ var AllHComponent = (function () {
         else {
             this.detailschambre = false;
         }
+    };
+    AllHComponent.prototype.reserver = function () {
+        this.reserve = true;
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;

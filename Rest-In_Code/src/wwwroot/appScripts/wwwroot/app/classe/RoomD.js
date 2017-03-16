@@ -5,4 +5,4 @@ var RoomD = (function () {
     return RoomD;
 }());
 exports.RoomD = RoomD;
-//# sourceMappingURL=RoomD.js.map
+//# sourceMappingURL=roomd.js.map

@@ -15,19 +15,28 @@ var CityService = (function () {
         this.http = http;
     }
     CityService.prototype.getAll = function () {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/cities.json')
+        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/cities.json')
+             .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/cities.json')
             .map(function (data) { return data.json(); });
     };
     CityService.prototype.getCity = function (i) {
+        /*
         return this.http.get('http://127.0.0.1:8000/pollsAPI/cities/' + i + '.json')
+            .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/cities/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
     CityService.prototype.getAllH = function () {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh.json')
+        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh.json')
+             .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/citiesh.json')
             .map(function (data) { return data.json(); });
     };
     CityService.prototype.getCityH = function (i) {
-        return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh/' + i + '.json')
+        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/citiesh/' + i + '.json')
+             .map(data => data.json());*/
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/citiesh/' + i + '.json')
             .map(function (data) { return data.json(); });
     };
     CityService = __decorate([
