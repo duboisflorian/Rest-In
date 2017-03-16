@@ -209,9 +209,9 @@ export class HotelComponent {
         this._hService.deleteDispo(id)
             .subscribe(data => this.message = data);
         this.sTimeout = setTimeout(() => {
-            this._hService.afficherdispo(id)
+            this._hService.afficherdispo(this.selectadddispo)
                 .subscribe(data => this.dispos = data);
-        }, 200);
+        }, 300);
     }
 
     addRoom() {
