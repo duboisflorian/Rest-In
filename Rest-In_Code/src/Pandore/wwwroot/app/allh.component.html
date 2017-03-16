@@ -56,7 +56,7 @@
                                                             <h4 class="glyphicon glyphicon-bed"></h4><br>{{roomtype.type_name}}
                                                         </a>
                                                     </a> 
-</div>
+                                                </div>
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                                 <div class="container">
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div>
                                                 <br/>
-                                                <div class="foodchef-tab">
+                                                <div class="foodchef-tab" >
                                                     <div *ngIf="detailschambre == false">
                                                         <div class="foodchef-tab-content active">
                                                             <div class="itemlistpopup">
@@ -113,12 +113,37 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div *ngIf="detailschambre == true">
+                                                    <div *ngIf="detailschambre == true && reserve == false">
                                                         <h3 style="color: black;"> Information sur la {{chambre[0].type_name}}</h3>
                                                         <div class="item-quote">
                                                             <h4 style="text-align: justify; color: black;">Description : </h4><p style="color: black; text-align: justify">{{chambre[0].type_desc}}</p>
                                                             <h4 style="text-align: justify; color: black;">Prix de la chambre :</h4><p style="color: black; text-align: justify">{{chambre[0].type_price}} € la nuit</p>
-                                                            <p><button class="btn btn-primary btn-lg" style="text-align: right;">Réserver cette chambre</button></p>
+                                                            <p><button class="btn btn-primary btn-lg" style="text-align: right;" (click)="reserver()">Réserver cette chambre</button></p>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="detailschambre == true && reserve == true">
+                                                        <div class="bootstrap-iso">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                                        <!-- Form code begins -->
+                                                                        <form method="post">
+                                                                            <div class="form-group">
+                                                                                <!-- Date input -->
+                                                                                <label class="control-label" for="date">Date</label>
+                                                                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" />
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <!-- Submit button -->
+                                                                                <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <!-- Form code ends -->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

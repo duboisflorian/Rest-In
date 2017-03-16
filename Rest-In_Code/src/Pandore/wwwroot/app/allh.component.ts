@@ -78,6 +78,7 @@ export class AllHComponent {
     detailshotel: boolean = false;
     detailschambre: boolean = false;
     search: string;
+    reserve: boolean = false;
     cities: City[];
     sTimeout: any;
     c: City;
@@ -100,6 +101,7 @@ export class AllHComponent {
             .subscribe(data => this.roomtypes = data);        
     }
     afficherdetails(id: number) {
+        this.reserve = false;
         if (id != 999) {
             this.detailschambre = false;
             this.act = id;
@@ -127,6 +129,10 @@ export class AllHComponent {
         }else {
             this.detailschambre = false;
         }
+    }
+
+    reserver() {
+        this.reserve = true;
     }
     
     ngOnInit() {
