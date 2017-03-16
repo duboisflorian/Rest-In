@@ -50,6 +50,7 @@ var HotelComponent = (function () {
         this.formrt = false;
         this.formroom = false;
         this.formdispo = false;
+        this.formdadddispo = false;
         this.rooms = {
             "id": 1,
             "rooms": [
@@ -111,13 +112,16 @@ var HotelComponent = (function () {
     HotelComponent.prototype.formRoom = function () {
         this.formroom = true;
     };
+    HotelComponent.prototype.formAddDipos = function (id) {
+        this.selectadddispo = id;
+        this.formdadddispo = true;
+    };
     HotelComponent.prototype.formDispo = function (id) {
         var _this = this;
         this._hService.afficherdispo(id)
             .subscribe(function (data) { return _this.dispos = data; });
         this.sTimeout = setTimeout(function () {
             _this.formdispo = true;
-            alert(_this.dispos.dispo[0].dispo_start);
         }, 200);
     };
     HotelComponent.prototype.closeRT = function () {
@@ -133,6 +137,11 @@ var HotelComponent = (function () {
     };
     HotelComponent.prototype.closeDispo = function () {
         this.formdispo = false;
+    };
+    HotelComponent.prototype.closeAddDispo = function () {
+        this.formdadddispo = false;
+        this.start = null;
+        this.end = null;
     };
     HotelComponent.prototype.addRT = function () {
         var _this = this;
@@ -167,6 +176,15 @@ var HotelComponent = (function () {
                 .subscribe(function (data) { return _this.rooms = data; });
         }, 400);
     };
+    HotelComponent.prototype.deleteDispo = function (id) {
+        var _this = this;
+        this._hService.deleteDispo(id)
+            .subscribe(function (data) { return _this.message = data; });
+        this.sTimeout = setTimeout(function () {
+            _this._hService.afficherdispo(id)
+                .subscribe(function (data) { return _this.dispos = data; });
+        }, 200);
+    };
     HotelComponent.prototype.addRoom = function () {
         var _this = this;
         this._hService.addRoom(this.nom, this.floor, this.rooms.id)
@@ -176,6 +194,12 @@ var HotelComponent = (function () {
             _this._hService.getRoomsByRT(_this.selectrt)
                 .subscribe(function (data) { return _this.rooms = data; });
         }, 400);
+    };
+    HotelComponent.prototype.addDispo = function () {
+        var _this = this;
+        this._hService.addDispo(this.start, this.end, this.selectadddispo)
+            .subscribe(function (data) { return _this.message = data; });
+        this.closeAddDispo();
     };
     HotelComponent = __decorate([
         core_1.Component({

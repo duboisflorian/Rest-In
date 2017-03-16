@@ -549,7 +549,7 @@ def AddRoom(request, name, floor,id, format=None):
 def AddDispo(request, start, end,id, format=None):
 
     r = Room.objects.get(id=id)
-    Room.objects.create(dispo_start=start,dispo_end=end,room=r)
+    RoomD.objects.create(dispo_start=start,dispo_end=end,room=r)
     return Response("cree")
 
 @api_view(['GET', 'DELETE'])
