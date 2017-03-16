@@ -50,12 +50,16 @@ export class HotelComponent {
     formrt: boolean = false;
     formroom: boolean = false;
     formdispo: boolean = false;
+    formdadddispo: boolean = false;
     name: string;
     price: string;
     desc: string;
+    start: Date;
+    end: Date;
     nom: string;
     floor: string;
     message: string;
+    selectadddispo: number;
     selectrt: number;
     rooms: RoomTypeRoom = {
         "id": 1,
@@ -129,13 +133,19 @@ export class HotelComponent {
         this.formroom = true;
     }
 
+    formAddDipos(id: number) {
+        this.selectadddispo = id;
+        this.formdadddispo = true;
+    }
+
+    
+
     formDispo(id: number) {
         this._hService.afficherdispo(id)
             .subscribe(data => this.dispos = data);
 
         this.sTimeout = setTimeout(() => {
             this.formdispo = true;
-            alert(this.dispos.dispo[0].dispo_start);
         }, 200);
 
     }
@@ -155,6 +165,12 @@ export class HotelComponent {
 
     closeDispo() {
         this.formdispo = false;
+    }
+
+    closeAddDispo() {
+        this.formdadddispo = false;
+        this.start = null;
+        this.end=null;
     }
 
     addRT() {
@@ -189,6 +205,15 @@ export class HotelComponent {
         }, 400);
     }
 
+    deleteDispo(id: number) {
+        this._hService.deleteDispo(id)
+            .subscribe(data => this.message = data);
+        this.sTimeout = setTimeout(() => {
+            this._hService.afficherdispo(id)
+                .subscribe(data => this.dispos = data);
+        }, 200);
+    }
+
     addRoom() {
         this._hService.addRoom(this.nom, this.floor, this.rooms.id)
             .subscribe(data => this.message = data);
@@ -197,6 +222,12 @@ export class HotelComponent {
             this._hService.getRoomsByRT(this.selectrt)
                 .subscribe(data => this.rooms = data);
         }, 400);
+    }
+
+    addDispo() {
+        this._hService.addDispo(this.start, this.end, this.selectadddispo)
+            .subscribe(data => this.message = data);
+        this.closeAddDispo();
     }
 
 }
