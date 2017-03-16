@@ -184,6 +184,12 @@ var AllHComponent = (function () {
         else
             this._router.navigate(['Hotel']);
     };
+    AllHComponent.prototype.goReservation = function () {
+        if (this.us != 0)
+            this._router.navigate(['Reservation', { us: this.us }]);
+        else
+            this._router.navigate(['Reservation']);
+    };
     AllHComponent.prototype.ChangeSearch = function () {
         var found = 0;
         for (var i = 0; i < this.cities.length; i++) {

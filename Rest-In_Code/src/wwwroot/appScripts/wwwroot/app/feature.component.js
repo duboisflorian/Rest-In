@@ -54,6 +54,12 @@ var FeatureComponent = (function () {
         else
             this._router.navigate(['Hotel']);
     };
+    FeatureComponent.prototype.goReservation = function () {
+        if (this.us != 0)
+            this._router.navigate(['Reservation', { us: this.us }]);
+        else
+            this._router.navigate(['Reservation']);
+    };
     FeatureComponent = __decorate([
         core_1.Component({
             selector: 'my-feature', providers: [http_1.HTTP_PROVIDERS],

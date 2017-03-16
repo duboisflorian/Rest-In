@@ -11,4 +11,10 @@ var RoomTypeAvance = (function () {
     return RoomTypeAvance;
 }());
 exports.RoomTypeAvance = RoomTypeAvance;
+var RoomTypeRoom = (function () {
+    function RoomTypeRoom() {
+    }
+    return RoomTypeRoom;
+}());
+exports.RoomTypeRoom = RoomTypeRoom;
 //# sourceMappingURL=roomtype.js.map

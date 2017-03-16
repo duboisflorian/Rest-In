@@ -75,6 +75,12 @@ var HomeComponent = (function () {
         else
             this._router.navigate(['Hotel']);
     };
+    HomeComponent.prototype.goReservation = function () {
+        if (this.us != 0)
+            this._router.navigate(['Reservation', { us: this.us }]);
+        else
+            this._router.navigate(['Reservation']);
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'my-home',

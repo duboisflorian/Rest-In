@@ -14,6 +14,7 @@ var home_component_1 = require('./home.component');
 var allh_component_1 = require('./allh.component');
 var co_component_1 = require('./co.component');
 var in_component_1 = require('./in.component');
+var reservation_component_1 = require('./reservation.component');
 var feature_component_1 = require('./feature.component');
 var hotel_component_1 = require('./hotel.component');
 var http_1 = require('angular2/http');
@@ -68,6 +69,11 @@ var AppComponent = (function () {
                 path: '/hotel',
                 name: 'Hotel',
                 component: hotel_component_1.HotelComponent
+            },
+            {
+                path: '/reservation',
+                name: 'Reservation',
+                component: reservation_component_1.ReservationComponent
             }
         ]), 
         __metadata('design:paramtypes', [])

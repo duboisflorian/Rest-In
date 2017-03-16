@@ -21,33 +21,48 @@ var HotelComponent = (function () {
         this._uService = _uService;
         this._hService = _hService;
         this.us = 0;
-        this.rt = [{
-                "id": 1,
-                "roomtypes": [{
-                        "id": 1,
-                        "images": [
-                            {
-                                "id": 1,
-                                "image_path": "",
-                                "room_type": 1
-                            }
-                        ],
-                        "type_name": "",
-                        "type_desc": "",
-                        "type_price": 126.0,
-                        "hotel": 1
-                    }],
-                "hotel_name": "",
-                "hotel_desc": "",
-                "hotel_lat": 48.857841,
-                "hotel_long": 2.346736,
-                "adr": "",
-                "image": "",
-                "stars": 3.0,
-                "city": 1,
-                "hotelier": 0
-            }];
+        this.rt = {
+            "id": 1,
+            "roomtypes": [{
+                    "id": 1,
+                    "images": [
+                        {
+                            "id": 1,
+                            "image_path": "",
+                            "room_type": 1
+                        }
+                    ],
+                    "type_name": "",
+                    "type_desc": "",
+                    "type_price": 126.0,
+                    "hotel": 1
+                }],
+            "hotel_name": "",
+            "hotel_desc": "",
+            "hotel_lat": 48.857841,
+            "hotel_long": 2.346736,
+            "adr": "",
+            "image": "",
+            "stars": 3.0,
+            "city": 1,
+            "hotelier": 0
+        };
         this.formrt = false;
+        this.rooms = {
+            "id": 1,
+            "rooms": [
+                {
+                    "id": 1,
+                    "room_name": "101",
+                    "room_floor": 1,
+                    "room_type": 1
+                }
+            ],
+            "type_name": "",
+            "type_desc": "",
+            "type_price": 126.0,
+            "hotel": 1
+        };
     }
     HotelComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -58,7 +73,12 @@ var HotelComponent = (function () {
         this.sTimeout = setTimeout(function () {
             _this._hService.getHotelWithRoomTypes(_this.userh.hotel[0].id)
                 .subscribe(function (data) { return _this.rt = data; });
-        }, 400);
+        }, 200);
+        this.sTimeout = setTimeout(function () {
+            _this.selectrt = _this.rt.roomtypes[0].id;
+            _this._hService.getRoomsByRT(_this.selectrt)
+                .subscribe(function (data) { return _this.rooms = data; });
+        }, 300);
     };
     HotelComponent.prototype.goHome = function () {
         if (this.us != 0)
@@ -96,6 +116,11 @@ var HotelComponent = (function () {
             _this._hService.getHotelWithRoomTypes(_this.userh.hotel[0].id)
                 .subscribe(function (data) { return _this.rt = data; });
         }, 400);
+    };
+    HotelComponent.prototype.changeselectrt = function () {
+        var _this = this;
+        this._hService.getRoomsByRT(this.selectrt)
+            .subscribe(function (data) { return _this.rooms = data; });
     };
     HotelComponent = __decorate([
         core_1.Component({

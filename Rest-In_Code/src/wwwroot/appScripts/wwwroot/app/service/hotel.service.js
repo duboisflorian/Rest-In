@@ -37,6 +37,9 @@ var HotelService = (function () {
     HotelService.prototype.deleteRT = function (id) {
         return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomtypes/' + id).map(function (data) { return data.json(); });
     };
+    HotelService.prototype.getRoomsByRT = function (id) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/roomtypesroom/' + id).map(function (data) { return data.json(); });
+    };
     HotelService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
