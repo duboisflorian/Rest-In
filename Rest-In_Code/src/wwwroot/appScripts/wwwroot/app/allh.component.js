@@ -90,23 +90,29 @@ var AllHComponent = (function () {
     AllHComponent.prototype.afficherdetails = function (id) {
         var _this = this;
         if (id != 999) {
+            this.detailschambre = false;
             this.act = id;
-            this.detailschambre = true;
+            this.chambre[0].type_name = "";
+            this.chambre[0].type_desc = "";
             this.nb_image = 0;
             this._hotelService.getChambreByHotel(id)
                 .subscribe(function (data) { return _this.chambreb = data; });
-            if (this.chambreb[0].images.length == 0) {
-                this.chambre = this.chambreb;
-                this.chambre[0].images[0] = {
-                    "id": 1,
-                    "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
-                    "room_type": 1
-                };
-            }
-            else {
-                this.chambre = this.chambreb;
-            }
-            this.nb_image = this.chambre[0].images.length;
+            this.sTimeout = setTimeout(function () {
+                if (_this.chambreb[0].images.length == 0) {
+                    _this.chambre = _this.chambreb;
+                    _this.chambre[0].images[0] = {
+                        "id": 1,
+                        "image_path": "https://q-ec.bstatic.com/images/hotel/max1024x768/499/49930212.jpg",
+                        "room_type": 1
+                    };
+                    _this.nb_image = 0;
+                }
+                else {
+                    _this.chambre = _this.chambreb;
+                    _this.nb_image = _this.chambre[0].images.length;
+                }
+            }, 200);
+            this.detailschambre = true;
         }
         else {
             this.detailschambre = false;

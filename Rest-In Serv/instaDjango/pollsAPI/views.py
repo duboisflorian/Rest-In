@@ -1,5 +1,5 @@
 from pollsAPI.models import Hotel , City , RoomType , Room , RoomR, RoomD, RoomImage, User
-from pollsAPI.serializers import HotelSerializer , UserHSerializer, RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
+from pollsAPI.serializers import HotelSerializer , RoomTypeRoomSerializer ,UserHSerializer, RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
 from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
 from rest_framework import status
@@ -230,6 +230,32 @@ def HotelRTDetail(request, pk,format=None):
     elif request.method == 'DELETE':
         hotel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def RoomTypeRoomDetail(request, pk,format=None):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    try:
+        room_types = RoomType.objects.get(pk=pk)
+    except RoomType.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomTypeRoomSerializer(room_types)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = RoomTypeRoomSerializer(room_types, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        room_types.delete()
+        return Response("supprime")
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -511,3 +537,15 @@ def AddRT(request, name, desc, price,id, format=None):
     h = Hotel.objects.get(id=id)
     RoomType.objects.create(type_name=name,type_desc=desc,type_price=price,hotel=h)
     return Response("cree")
+
+@api_view(['GET', 'DELETE'])
+def RoomByRT(request, pk, format=None):
+
+    try:
+        r = Room.objects.filter(room_type=pk)
+    except Room.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomSerializer(r, many=True)
+        return Response(serializer.data)

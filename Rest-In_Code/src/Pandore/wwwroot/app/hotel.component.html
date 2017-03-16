@@ -84,7 +84,7 @@
                                 <tbody>
                                     <tr *ngFor="#chambre of rt.roomtypes">
                                         <td align="center">
-                                            <a class="btn btn-danger"  (click)="deleteRT(chambre.id)"><em class="fa fa-trash"></em></a>
+                                            <a class="btn btn-danger" (click)="deleteRT(chambre.id)"><em class="fa fa-trash"></em></a>
                                         </td>
                                         <td class="hidden-xs">{{chambre.id}}</td>
                                         <th>{{chambre.type_name}}</th>
@@ -96,14 +96,40 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="col-md-6" style="top: 13%;bottom: 3%;right: 0;">
-                <div>
+
+                <div class="col-md-6" style="padding-top:5%;bottom: 3%;right: 0;">
+
+                    <div class="tabbable-panel">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <a *ngFor="#chambre of rt.roomtypes">
+                                    <li *ngIf="chambre.id == rt.roomtypes[0].id" class="active">
+                                    <li *ngIf="chambre.id != rt.roomtypes[0].id ">
+                                        <a href="#chambre.id" data-toggle="tab">
+                                            {{chambre.type_name}}
+                                        </a>
+                                    </li>
+                                </a>
+                            </ul>
+                            <div class="tab-content">
+                                <div *ngFor="#chambre of rt.roomtypes">
+                                    <div *ngIf="chambre.id == rt.roomtypes[0].id" class="tab-pane active" id="chambre.id">
+                                        <div *ngIf="chambre.id != rt.roomtypes[0].id" class="tab-pane active" id="chambre.id">
+                                            <p>
+                                                {{chambre.type_desc}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
-
     </div>
 </body>

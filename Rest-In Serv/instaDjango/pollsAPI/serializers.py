@@ -82,5 +82,14 @@ class UserHSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+class RoomTypeRoomSerializer(serializers.ModelSerializer):
+
+    rooms = RoomSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = RoomType
+        fields = '__all__'
 
 
