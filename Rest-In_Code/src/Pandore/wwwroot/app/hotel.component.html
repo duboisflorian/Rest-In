@@ -54,6 +54,38 @@
             </div>
         </div>
 
+        <div class="container" *ngIf="formroom == true">
+            <div class="row">
+                <div class="modal fade small-popup in" id="menu-filter" role="dialog" style="display: block; padding-top: 10%;">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Création d'un type de chambre <button type="button" class="close" data-dismiss="modal" (click)="closeRoom()">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="foodlistmodal-container">
+                                    <div class="option-holder">
+                                        <div class="foodchef-tab-container">
+                                            <form (ngSubmit)="addRoom()">
+                                                <label for="inputname" class="sr-only">Nom</label>
+                                                <input style="display:inline;" id="inputname" [(ngModel)]="nom" class="form-control" placeholder="Nom" required="" type="text">
+                                                <br />
+                                                <label for="inputetage" class="sr-only">Description</label>
+                                                <input style="display:inline;" id="inputetage" [(ngModel)]="floor" class="form-control" placeholder="Etages" required="" type="text">
+                                                <br />
+                                                <button class="btn btn-default btn-lg active" type="submit">Créer</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
 
             <div class="row">
@@ -111,6 +143,8 @@
                                 <th><em class="fa fa-cog"></em></th>
                                 <th>Nom</th>
                                 <th>Etage</th>
+                                <th>Afficher dispo</th>
+                                <th>Créer dispo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,9 +154,16 @@
                                 </td>
                                 <th>{{room.room_name}}</th>
                                 <th>{{room.room_floor}}</th>
+                                <td align="center">
+                                    <a class="btn btn-warning"><em class="fa fa-calendar"></em></a>
+                                </td>
+                                <td align="center">
+                                    <a class="btn btn-info" ><em class="fa fa-pencil"></em></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="formRoom()">Creer</button>
                 </div>
             </div>
         </div>

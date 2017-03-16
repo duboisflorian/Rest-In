@@ -47,6 +47,7 @@ export class HotelComponent {
         "hotelier": 0
     };
     formrt: boolean = false;
+    formroom: boolean = false;
     name: string;
     price: string;
     desc: string;
@@ -106,11 +107,21 @@ export class HotelComponent {
     formRT() {
         this.formrt = true;
     }
+
+    formRoom() {
+        this.formroom = true;
+    }
     closeRT() {
         this.formrt = false;
         this.name = "";
         this.desc = "";
         this.price = "";
+    }
+
+    closeRoom() {
+        this.formroom = false;
+        this.nom = "";
+        this.floor = "";
     }
 
     addRT() {
@@ -148,6 +159,7 @@ export class HotelComponent {
     addRoom() {
         this._hService.addRoom(this.nom, this.floor, this.rooms.id)
             .subscribe(data => this.message = data);
+        this.closeRoom();
         this.sTimeout = setTimeout(() => {
             this._hService.getRoomsByRT(this.selectrt)
                 .subscribe(data => this.rooms = data);

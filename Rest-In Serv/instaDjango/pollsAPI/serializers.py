@@ -92,4 +92,21 @@ class RoomTypeRoomSerializer(serializers.ModelSerializer):
         model = RoomType
         fields = '__all__'
 
+class RoomWDispoSerializer(serializers.ModelSerializer):
+    dispo = RoomDSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = Room
+        fields = '__all__'
+
+class RoomWReservSerializer(serializers.ModelSerializer):
+    reserv = RoomRSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = Room
+        fields = '__all__'
 

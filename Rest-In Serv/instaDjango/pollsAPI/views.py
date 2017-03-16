@@ -1,5 +1,5 @@
 from pollsAPI.models import Hotel , City , RoomType , Room , RoomR, RoomD, RoomImage, User
-from pollsAPI.serializers import HotelSerializer , RoomTypeRoomSerializer ,UserHSerializer, RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
+from pollsAPI.serializers import HotelSerializer ,RoomWReservSerializer , RoomWDispoSerializer , RoomTypeRoomSerializer ,UserHSerializer, RoomTypeImagesSerializer,HotelRTSerializer , UserSerializer ,CitySerializer, RoomTypeSerializer, CityHSerializer, RoomDSerializer , RoomImageSerializer, RoomRSerializer, RoomSerializer
 from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
 from rest_framework import status
@@ -555,4 +555,16 @@ def RoomByRT(request, pk, format=None):
 
     if request.method == 'GET':
         serializer = RoomSerializer(r, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET', 'DELETE'])
+def RoomDipoList(request, pk, format=None):
+
+    try:
+        r = Room.objects.filter(id=pk)
+    except Room.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RoomWDispoSerializer(r, many=True)
         return Response(serializer.data)
