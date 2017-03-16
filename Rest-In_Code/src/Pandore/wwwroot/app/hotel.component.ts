@@ -133,4 +133,13 @@ export class HotelComponent {
         this._hService.getRoomsByRT(this.selectrt)
             .subscribe(data => this.rooms = data);
     }
+
+    deleteRoom(id: number) {
+        this._hService.deleteRoom(id)
+            .subscribe(data => this.message = data);
+        this.sTimeout = setTimeout(() => {
+            this._hService.getRoomsByRT(this.selectrt)
+                .subscribe(data => this.rooms = data);
+        }, 400);
+    }
 }
