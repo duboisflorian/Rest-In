@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import { UtilisateurH } from './classe/utilisateur';
 import { HotelAvance } from './classe/hotel';
+import { RoomDispo } from './classe/room';
 import { RoomTypeRoom } from './classe/roomtype';
 import { HotelService } from './service/hotel.service';
 import { UtilisateurService } from './service/utilisateur.service';
@@ -48,6 +49,7 @@ export class HotelComponent {
     };
     formrt: boolean = false;
     formroom: boolean = false;
+    formdispo: boolean = false;
     name: string;
     price: string;
     desc: string;
@@ -69,6 +71,21 @@ export class HotelComponent {
         "type_desc": "",
         "type_price": 126.0,
         "hotel": 1
+    };
+
+    dispos: RoomDispo = {
+        "id": 1,
+        "dispo": [
+            {
+                "id": 1,
+                "dispo_start": "2017-03-01",
+                "dispo_end": "2018-03-01",
+                "room": 1
+            }
+        ],
+        "room_name": "101",
+        "room_floor": 1.0,
+        "room_type": 1
     };
 
     constructor(
@@ -111,6 +128,18 @@ export class HotelComponent {
     formRoom() {
         this.formroom = true;
     }
+
+    formDispo(id: number) {
+        this._hService.afficherdispo(id)
+            .subscribe(data => this.dispos = data);
+
+        this.sTimeout = setTimeout(() => {
+            this.formdispo = true;
+            alert(this.dispos.dispo[0].dispo_start);
+        }, 200);
+
+    }
+
     closeRT() {
         this.formrt = false;
         this.name = "";
@@ -122,6 +151,10 @@ export class HotelComponent {
         this.formroom = false;
         this.nom = "";
         this.floor = "";
+    }
+
+    closeDispo() {
+        this.formdispo = false;
     }
 
     addRT() {
@@ -165,4 +198,5 @@ export class HotelComponent {
                 .subscribe(data => this.rooms = data);
         }, 400);
     }
+
 }

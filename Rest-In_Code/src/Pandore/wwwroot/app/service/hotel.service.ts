@@ -64,10 +64,18 @@ export class HotelService {
     }
 
     addRoom(name: string, floor: string,id: number) {
-        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name  +'/' + desc + '/' + price + '/' + id )
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/addrt/' + name + '/' + floor + '/' + id )
                .map(data => data.json());*/
 
         return this.http.get('http://172.16.14.52:8000/pollsAPI/addroom/' + name + '/' + floor + '/' + id)
+            .map(data => data.json());
+    }
+
+    afficherdispo(id: number) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/roomDispo/' + id )
+               .map(data => data.json());*/
+
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/roomDispo/' + id)
             .map(data => data.json());
     }
 }

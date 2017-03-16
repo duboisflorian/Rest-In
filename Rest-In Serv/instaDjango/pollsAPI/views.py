@@ -561,7 +561,7 @@ def RoomByRT(request, pk, format=None):
 def RoomDipoList(request, pk, format=None):
 
     try:
-        r = Room.objects.filter(id=pk)
+        r = Room.objects.get(id=pk)
     except Room.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
