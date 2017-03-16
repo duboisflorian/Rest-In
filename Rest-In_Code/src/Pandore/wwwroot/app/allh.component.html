@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <div class="container" *ngIf="detailshotel == true" >
             <div class="row">
-                <div class="modal fade small-popup in" id="menu-filter" role="dialog" style="display: block; padding-top: 10%;">
+                <div class="modal fade small-popup in" id="menu-filter" role="dialog" style="display: block; padding-top: 0%;">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -59,6 +59,31 @@
 </div>
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="container">
+                                                    <div *ngIf="nb_image != 0 && detailschambre == true" id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 38%; height: 40%;">
+                                                        <!-- Wrapper for slides -->
+                                                        <div class="carousel-inner" role="listbox">
+                                                            <div class="item active">
+                                                                <img src="{{chambre[0].images[0].image_path}}" style="width: 100%; height: 100%;" alt="Chania">
+                                                            </div>
+
+                                                            <div *ngFor="#image of chambre[0].images | slice:1" class="item">
+                                                                <img src="{{image.image_path}}" style="width: 100%; height: 100%;" alt="Chania">
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Left and right controls -->
+                                                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <br/>
                                                 <div class="foodchef-tab">
                                                     <div *ngIf="detailschambre == false">
                                                         <div class="foodchef-tab-content active">
@@ -80,7 +105,6 @@
                                                                         <div class="item-price">
                                                                             <!-- getting dish price html -->
                                                                             <br />
-                                                                            <span class="pull-left">220 € par nuit</span>
                                                                             <span class="item-taste-content">Wifi</span>
                                                                             <span class="item-taste-content">Petit-déjeuner</span>
                                                                         </div>
@@ -90,35 +114,12 @@
                                                         </div>
                                                     </div>
                                                     <div *ngIf="detailschambre == true">
-                                                        <div class="container">
-                                                            <br>
-                                                            <div *ngIf="nb_image != 0" id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 38%; height: 40%;">
-                                                                <!-- Wrapper for slides -->
-                                                                <div  class="carousel-inner" role="listbox">
-                                                                    <div class="item active">
-                                                                        <img src="{{chambre[0].images[0].image_path}}" style="width: 100%; height: 100%;" alt="Chania">
-                                                                    </div>
-
-                                                                    <div *ngFor="#image of chambre[0].images | slice:1" class="item">
-                                                                        <img src="{{image.image_path}}" style="width: 100%; height: 100%;" alt="Chania">
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Left and right controls -->
-                                                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Previous</span>
-                                                                </a>
-                                                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Next</span>
-                                                                </a>
-                                                            </div>
+                                                        <h3 style="color: black;"> Information sur la {{chambre[0].type_name}}</h3>
+                                                        <div class="item-quote">
+                                                            <h4 style="text-align: justify; color: black;">Description : </h4><p style="color: black; text-align: justify">{{chambre[0].type_desc}}</p>
+                                                            <h4 style="text-align: justify; color: black;">Prix de la chambre :</h4><p style="color: black; text-align: justify">{{chambre[0].type_price}} € la nuit</p>
+                                                            <p><button class="btn btn-primary btn-lg" style="text-align: right;">Réserver cette chambre</button></p>
                                                         </div>
-                                                        {{chambre[0].type_name}}
-                                                        <p class="item-quote">
-                                                            {{chambre[0].type_desc}}
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
