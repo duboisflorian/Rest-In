@@ -406,7 +406,7 @@ def RoomDDetail(request, pk,format=None):
 
     elif request.method == 'DELETE':
         room.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response("supprimé")
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def UserDetail(request, pk,format=None):
@@ -543,6 +543,13 @@ def AddRoom(request, name, floor,id, format=None):
 
     r = RoomType.objects.get(id=id)
     Room.objects.create(room_name=name,room_floor=floor,room_type=r)
+    return Response("cree")
+
+@api_view(['GET'])
+def AddDispo(request, start, end,id, format=None):
+
+    r = Room.objects.get(id=id)
+    Room.objects.create(dispo_start=start,dispo_end=end,room=r)
     return Response("cree")
 
 @api_view(['GET', 'DELETE'])

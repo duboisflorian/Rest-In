@@ -57,6 +57,12 @@ export class HotelService {
         return this.http.delete('http://172.16.14.52:8000/pollsAPI/room/' + id).map(data => data.json());
     }
 
+    deleteDispo(id: number) {
+        /* return this.http.delete('http://127.0.0.1:8000/pollsAPI/roomD/' + id).map(data => data.json());*/
+
+        return this.http.delete('http://172.16.14.52:8000/pollsAPI/roomD/' + id).map(data => data.json());
+    }
+
     getRoomsByRT(id: number) {
        /* return this.http.get('http://127.0.0.1:8000/pollsAPI/roomtypesroom/' + id).map(data => data.json());*/
 
@@ -68,6 +74,14 @@ export class HotelService {
                .map(data => data.json());*/
 
         return this.http.get('http://172.16.14.52:8000/pollsAPI/addroom/' + name + '/' + floor + '/' + id)
+            .map(data => data.json());
+    }
+
+    addDispo(start: Date, end: Date, id: number) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/adddispo/' + start + '/' + end + '/' + id )
+               .map(data => data.json());*/
+
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/adddispo/' + start + '/' + end + '/' + id)
             .map(data => data.json());
     }
 

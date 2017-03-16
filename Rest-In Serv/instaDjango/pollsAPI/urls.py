@@ -43,6 +43,7 @@ urlpatterns = [
     url('^roomR/(?P<pk>[0-9]+)$', views.RoomRDetail),
     url('^roomD/$', views.RoomDList),
     url('^roomDispo/(?P<pk>[0-9]+)$', views.RoomDipoList),
+    url('^adddispo/(?P<start>[\w.%+-]+)/(?P<end>[\w.%+-]+)/(?P<id>[0-9]+)$', views.AddDispo),
     url('^addroom/(?P<name>[A-Za-z0-9]+)/(?P<floor>[A-Za-z0-9]+)/(?P<id>[0-9]+)$', views.AddRoom),
     url('^roomD/(?P<pk>[0-9]+)$', views.RoomDDetail),
     url('^roomimages/$', views.RoomImagesList),
