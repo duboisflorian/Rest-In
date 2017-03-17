@@ -101,6 +101,14 @@ export class HotelService {
             .map(data => data.json());
     }
 
+    afficherreserv(id: number) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/roomReserv/' + id )
+                .map(data => data.json());
+         */
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/roomReserv/' + id)
+            .map(data => data.json());
+    }
+
     afficherdispobyRT(id: number) {
       /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/roomDispoByRT/' + id)
             .map(data => data.json());*/

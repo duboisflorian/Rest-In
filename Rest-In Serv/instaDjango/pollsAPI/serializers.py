@@ -110,3 +110,23 @@ class RoomWReservSerializer(serializers.ModelSerializer):
         model = Room
         fields = '__all__'
 
+
+class ReservationRTSerializer(serializers.ModelSerializer):
+    rooms = RoomWReservSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = RoomType
+        fields = '__all__'
+
+
+class ReservationHotelSerializer(serializers.ModelSerializer):
+    roomtypes = ReservationRTSerializer(
+        read_only=True,
+        many=True,
+    )
+    class Meta:
+        model = Hotel
+        fields = '__all__'
+

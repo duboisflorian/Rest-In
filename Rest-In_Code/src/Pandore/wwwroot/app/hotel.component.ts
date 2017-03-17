@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import { UtilisateurH } from './classe/utilisateur';
 import { HotelAvance } from './classe/hotel';
-import { RoomDispo } from './classe/room';
+import { RoomDispo, RoomReserv } from './classe/room';
 import { RoomTypeRoom } from './classe/roomtype';
 import { HotelService } from './service/hotel.service';
 import { UtilisateurService } from './service/utilisateur.service';
@@ -51,6 +51,7 @@ export class HotelComponent {
     formroom: boolean = false;
     formdispo: boolean = false;
     formdadddispo: boolean = false;
+    formreserv: boolean = false;
     name: string;
     price: string;
     desc: string;
@@ -85,6 +86,22 @@ export class HotelComponent {
                 "dispo_start": "2017-03-01",
                 "dispo_end": "2018-03-01",
                 "room": 1
+            }
+        ],
+        "room_name": "101",
+        "room_floor": 1.0,
+        "room_type": 1
+    };
+
+    reservs: RoomReserv = {
+        "id": 1,
+        "reserv": [
+            {
+                "id": 1,
+                "reserv_start": "2017-03-01",
+                "reserv_end": "2018-03-01",
+                "room": 1,
+                "client":7
             }
         ],
         "room_name": "101",
@@ -133,6 +150,16 @@ export class HotelComponent {
         this.formroom = true;
     }
 
+    formReserv(id: number) {
+        this._hService.afficherreserv(id)
+            .subscribe(data => this.reservs = data);
+
+        this.sTimeout = setTimeout(() => {
+            this.formreserv = true;
+        }, 200);
+
+    }
+
     formAddDipos(id: number) {
         this.selectadddispo = id;
         this.formdadddispo = true;
@@ -165,6 +192,10 @@ export class HotelComponent {
 
     closeDispo() {
         this.formdispo = false;
+    }
+
+    closeReserv() {
+        this.formreserv = false;
     }
 
     closeAddDispo() {

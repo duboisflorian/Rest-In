@@ -127,6 +127,43 @@
             </div>
         </div>
 
+        <div class="container" *ngIf="formreserv == true">
+            <div class="row">
+                <div class="modal fade small-popup in" id="menu-filter" role="dialog" style="display: block; padding-top: 10%;">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Réservation <button type="button" class="close" data-dismiss="modal" (click)="closeReserv()">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="foodlistmodal-container">
+                                    <div class="option-holder">
+                                        <div class="foodchef-tab-container">
+                                            <table class="table table-striped table-bordered table-list" style="color:darkslategrey;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date de début</th>
+                                                        <th>Date de fin</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="#r of reservs.reserv">
+                                                        <th>{{r.reserv_start}}</th>
+                                                        <th>{{r.reserv_end}}</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container" *ngIf="formdadddispo == true">
             <div class="row">
                 <div class="modal fade small-popup in" id="menu-filter" role="dialog" style="display: block; padding-top: 10%;">
@@ -235,7 +272,7 @@
                                 <th>{{room.room_name}}</th>
                                 <th>{{room.room_floor}}</th>
                                 <td align="center">
-                                    <a class="btn btn-warning" ><em class="fa fa-calendar"></em></a>
+                                    <a class="btn btn-warning" (click)="formReserv(room.id)"><em class="fa fa-calendar"></em></a>
                                 </td>
                                 <td align="center">
                                     <a class="btn btn-warning" (click)="formDispo(room.id)"><em class="fa fa-calendar"></em></a>

@@ -45,6 +45,7 @@ urlpatterns = [
     url('^roomDispo/(?P<pk>[0-9]+)$', views.RoomDipoList),
     url('^roomDispoByRT/(?P<pk>[0-9]+)$', views.RoomDipoByRT),
     url('^roomReserv/(?P<pk>[0-9]+)$', views.RoomReservList),
+    url('^Reservbyuser/(?P<pk>[0-9]+)$', views.ReservUser),
     url('^roomReservByRT/(?P<pk>[0-9]+)$', views.RoomReservByRT),
     url('^adddispo/(?P<start>[\w.%+-]+)/(?P<end>[\w.%+-]+)/(?P<id>[0-9]+)$', views.AddDispo),
     url('^addreserv/(?P<start>[\w.%+-]+)/(?P<end>[\w.%+-]+)/(?P<id>[0-9]+)/(?P<us>[0-9]+)$', views.AddReserv),
