@@ -20,6 +20,8 @@ export class ReservationComponent {
     sTimeout: any;
     us: number = 0;
     us_type: number = 0;
+    ct: number = 0;
+    prix: number = 0;
     reservs : HotelReservation[] = [
         {
             "id": 1,
@@ -84,7 +86,14 @@ export class ReservationComponent {
         }
     ];
     res: Reservation[];
-    resb: Reservation[]=null;
+    resb: Reservation[] = [];
+    test: Reservation = {
+        "id": 1,
+        "hotel": "",
+        "debut": "",
+        "fin": "",
+        "type": "",
+    };
 
     constructor(
         private _router: Router,
@@ -111,17 +120,29 @@ export class ReservationComponent {
             .subscribe(data => this.reservs = data);  
 
         this.sTimeout = setTimeout(() => {
-            this.resb = null;
+            this.resb = [];
+            this.ct = 0;
+            this.prix = 0;
             for (var a = 0; a < this.reservs.length; a++) {
                 for (var b = 0; b < this.reservs[a].roomtypes.length; b++) {
                     for (var c = 0; c < this.reservs[a].roomtypes[b].rooms.length; c++) {
-                        for (var d = 0; d < this.reservs[a].roomtypes[b].rooms[d].reserv.length; d++) {
-                            if (this.reservs[a].roomtypes[b].rooms[d].reserv[d].client == this.us)
-                                this.resb.push()
+                        for (var d = 0; d < this.reservs[a].roomtypes[b].rooms[c].reserv.length; d++) {
+                            if (this.reservs[a].roomtypes[b].rooms[c].reserv[d].client == this.us) {
+
+                                this.ct = this.ct + 1;
+                                alert(this.ct);
+                                this.test.id = this.ct;
+                                this.test.hotel = this.reservs[a].hotel_name;
+                                this.test.debut = this.reservs[a].roomtypes[b].rooms[c].reserv[d].reserv_start;
+                                this.test.fin = this.reservs[a].roomtypes[b].rooms[c].reserv[d].reserv_end;
+                                this.test.type = this.reservs[a].roomtypes[b].type_name;
+                                this.resb.push(this.test);
+                            }
                         }
                     }
                 }
             }
+            this.res = this.resb;
         }, 500);
     }
 

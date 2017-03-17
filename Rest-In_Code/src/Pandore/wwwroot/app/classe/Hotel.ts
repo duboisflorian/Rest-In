@@ -47,5 +47,4 @@ export class Reservation {
     debut: string;
     fin: string;
     type: string;
-    prix:number;
 }
