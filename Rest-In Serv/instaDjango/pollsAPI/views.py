@@ -625,7 +625,7 @@ def RoomReservByRT(request, pk, format=None):
 def ReservUser(request, pk, format=None):
 
     try:
-        r = Hotel.objects.filter(client=pk)
+        r = Hotel.objects.all()
     except Hotel.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
