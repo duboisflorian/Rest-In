@@ -72,6 +72,12 @@ var HotelService = (function () {
         /*  return this.http.get('http://172.16.14.52:8000/pollsAPI/adddispo/' + start + '/' + end + '/' + id)
              .map(data => data.json());*/
     };
+    HotelService.prototype.addReserv = function (start, end, id, us) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/addreserv/' + start + '/' + end + '/' + id + '/' + us)
+            .map(function (data) { return data.json(); });
+        /*  return this.http.get('http://172.16.14.52:8000/pollsAPI/addreserv/' + start + '/' + end + '/' + id  + '/' + us)
+             .map(data => data.json());*/
+    };
     HotelService.prototype.afficherdispo = function (id) {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/roomDispo/' + id)
             .map(function (data) { return data.json(); });
@@ -82,6 +88,12 @@ var HotelService = (function () {
         return this.http.get('http://127.0.0.1:8000/pollsAPI/roomDispoByRT/' + id)
             .map(function (data) { return data.json(); });
         /* return this.http.get('http://172.16.14.52:8000/pollsAPI/roomDispoByRT/' + id)
+            .map(data => data.json());*/
+    };
+    HotelService.prototype.afficherreservbyRT = function (id) {
+        return this.http.get('http://127.0.0.1:8000/pollsAPI/roomReservByRT/' + id)
+            .map(function (data) { return data.json(); });
+        /* return this.http.get('http://172.16.14.52:8000/pollsAPI/roomReservByRT/' + id)
             .map(data => data.json());*/
     };
     HotelService = __decorate([

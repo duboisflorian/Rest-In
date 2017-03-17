@@ -552,6 +552,14 @@ def AddDispo(request, start, end,id, format=None):
     RoomD.objects.create(dispo_start=start,dispo_end=end,room=r)
     return Response("cree")
 
+@api_view(['GET'])
+def AddReserv(request, start, end,id,us, format=None):
+
+    r = Room.objects.get(id=id)
+    u = User.objects.get(id=us)
+    RoomR.objects.create(reserv_start=start,reserv_end=end,room=r,client=u)
+    return Response("cree")
+
 @api_view(['GET', 'DELETE'])
 def RoomByRT(request, pk, format=None):
 

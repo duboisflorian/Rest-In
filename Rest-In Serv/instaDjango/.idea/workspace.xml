@@ -18,18 +18,18 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pollsAPI/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="58" column="3" lean-forward="false" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
+            <state relative-caret-position="419">
+              <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pollsAPI/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="24" />
+            <state relative-caret-position="351">
+              <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="19" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -37,10 +37,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/instaDjango/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pollsAPI/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
+            <state relative-caret-position="1734">
               <caret line="103" column="27" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="27" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -52,8 +62,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pollsAPI/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
-              <caret line="611" column="42" lean-forward="false" selection-start-line="611" selection-start-column="42" selection-end-line="611" selection-end-column="42" />
+            <state relative-caret-position="439">
+              <caret line="555" column="18" lean-forward="false" selection-start-line="555" selection-start-column="18" selection-end-line="555" selection-end-column="18" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -66,11 +76,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/instaDjango/settings.py" />
         <option value="$PROJECT_DIR$/pollsAPI/serializers.py" />
         <option value="$PROJECT_DIR$/pollsAPI/models.py" />
-        <option value="$PROJECT_DIR$/pollsAPI/views.py" />
         <option value="$PROJECT_DIR$/pollsAPI/urls.py" />
+        <option value="$PROJECT_DIR$/pollsAPI/views.py" />
+        <option value="$PROJECT_DIR$/instaDjango/settings.py" />
       </list>
     </option>
   </component>
@@ -968,13 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/instaDjango/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="56" column="19" lean-forward="false" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/instaDjango/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -982,27 +985,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pollsAPI/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="58" column="3" lean-forward="false" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pollsAPI/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="611" column="42" lean-forward="false" selection-start-line="611" selection-start-column="42" selection-end-line="611" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pollsAPI/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
+        <state relative-caret-position="1734">
           <caret line="103" column="27" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="27" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -1010,13 +995,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pollsAPI/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pollsAPI/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="555" column="18" lean-forward="false" selection-start-line="555" selection-start-column="18" selection-end-line="555" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pollsAPI/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="351">
+          <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="19" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/instaDjango/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

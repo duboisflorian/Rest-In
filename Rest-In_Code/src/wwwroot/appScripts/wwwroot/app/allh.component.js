@@ -88,6 +88,21 @@ var AllHComponent = (function () {
                 "room_floor": 1.0,
                 "room_type": 1
             }];
+        this.reservs = [{
+                "id": 1,
+                "reserv": [
+                    {
+                        "id": 1,
+                        "reserv_start": "2017-04-01",
+                        "reserv_end": "2017-04-15",
+                        "room": 1,
+                        "client": 7
+                    }
+                ],
+                "room_name": "101",
+                "room_floor": 1.0,
+                "room_type": 1
+            }];
         this.detailshotel = false;
         this.recherche = false;
         this.detailschambre = false;
@@ -140,10 +155,65 @@ var AllHComponent = (function () {
     AllHComponent.prototype.reserver = function () {
         this.reserve = true;
     };
+    AllHComponent.prototype.transform = function (date) {
+        return new Date(date);
+    };
     AllHComponent.prototype.reserverchambre = function () {
         var _this = this;
         this._hotelService.afficherdispobyRT(this.act)
             .subscribe(function (data) { return _this.dispos = data; });
+        this._hotelService.afficherreservbyRT(this.act)
+            .subscribe(function (data) { return _this.reservs = data; });
+        this.sTimeout = setTimeout(function () {
+            alert("reserv");
+            //pour chaque chambre dispo
+            for (var a = 0; a < _this.dispos.length; a++) {
+                // si il y a une dispo
+                if (_this.dispos[a].dispo.length > 0) {
+                    // pour chaque dispo
+                    for (var b = 0; b < _this.dispos[a].dispo.length; b++) {
+                        // si les dates sont comprisent dans la dispo
+                        if ((_this.start.toString() >= _this.dispos[a].dispo[b].dispo_start && _this.start.toString() <= _this.dispos[a].dispo[b].dispo_end) && (_this.end.toString() >= _this.dispos[a].dispo[b].dispo_start && _this.end.toString() <= _this.dispos[a].dispo[b].dispo_end)) {
+                            //alors on regarde pour chaque chambre les réservations
+                            for (var c = 0; c < _this.reservs.length; c++) {
+                                // si c'est la meme chambre
+                                if (_this.dispos[a].id == _this.reservs[c].id) {
+                                    //si il y a pas de reservation
+                                    if (_this.reservs[c].reserv.length == 0) {
+                                        //creer reservation
+                                        _this._hotelService.addReserv(_this.start, _this.end, _this.dispos[a].id, _this.us)
+                                            .subscribe(function (data) { return _this.message = data; });
+                                        //exit
+                                        break;
+                                    }
+                                    else {
+                                        var ct = 0;
+                                        // pour chaque reservation
+                                        for (var d = 0; d < _this.reservs[c].reserv.length; d++) {
+                                            // si les dates sont pas comprise dans les reservations
+                                            if ((_this.start.toString() < _this.reservs[c].reserv[d].reserv_start || _this.start.toString() > _this.reservs[c].reserv[d].reserv_end) && (_this.end.toString() < _this.reservs[c].reserv[d].reserv_start || _this.end.toString() > _this.reservs[c].reserv[d].reserv_end)) {
+                                            }
+                                            else {
+                                                ct++;
+                                            }
+                                        }
+                                        //si il y a pas de reservation durant cette période
+                                        if (ct == 0) {
+                                            //creer reservation
+                                            _this._hotelService.addReserv(_this.start, _this.end, _this.dispos[a].id, _this.us)
+                                                .subscribe(function (data) { return _this.message = data; });
+                                            //exit
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }, 500);
+        // il n'y a pas de place
     };
     AllHComponent.prototype.ngOnInit = function () {
         var _this = this;

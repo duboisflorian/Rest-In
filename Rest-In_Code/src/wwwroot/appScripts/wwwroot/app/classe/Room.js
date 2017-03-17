@@ -11,4 +11,10 @@ var RoomDispo = (function () {
     return RoomDispo;
 }());
 exports.RoomDispo = RoomDispo;
+var RoomReserv = (function () {
+    function RoomReserv() {
+    }
+    return RoomReserv;
+}());
+exports.RoomReserv = RoomReserv;
 //# sourceMappingURL=room.js.map

@@ -5,4 +5,4 @@ var RoomR = (function () {
     return RoomR;
 }());
 exports.RoomR = RoomR;
-//# sourceMappingURL=RoomR.js.map
+//# sourceMappingURL=roomr.js.map
