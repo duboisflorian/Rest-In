@@ -33,15 +33,15 @@
                                     <th>Prix</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr style="color: black;">
-                                    <td>1</td>
-                                    <td>Hotel Victoria Chatelet</td>
-                                    <td>16/06/2017</td>
-                                    <td>25/06/2017</td>
-                                    <td>Chambre Standard</td>
-                                    <td>126</td>
-                                </tr>
+                            <tbody style="color: black;">
+                                                <tr style="color: black;" *ngFor="#r of res">
+                                                    <th style="color: black;">{{r.id}}</th>
+                                                    <th style="color: black;">{{r.hotel}}</th>
+                                                    <th style="color: black;" >{{r.debut}}</th>
+                                                    <th style="color: black;" >{{r.fin}}</th>
+                                                    <th style="color: black;" >{{r.type}}</th>
+                                                    <th style="color: black;">{{r.prix}}</th>
+                                                </tr>
                             </tbody>
                         </table>
                     </div>

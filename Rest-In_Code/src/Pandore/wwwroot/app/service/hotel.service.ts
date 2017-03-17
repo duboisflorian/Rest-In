@@ -124,4 +124,12 @@ export class HotelService {
          return this.http.get('http://172.16.14.52:8000/pollsAPI/roomReservByRT/' + id)
             .map(data => data.json());
     }
+
+    afficherreservbyUser(id: number) {
+        /*  return this.http.get('http://127.0.0.1:8000/pollsAPI/Reservbyuser/' + id)
+              .map(data => data.json());*/
+
+        return this.http.get('http://172.16.14.52:8000/pollsAPI/Reservbyuser/' + id)
+            .map(data => data.json());
+    }
 }

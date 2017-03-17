@@ -1,5 +1,5 @@
 ﻿import { RoomImage } from './roomimage';
-import { Room } from './room';
+import { Room, RoomReserv } from './room';
 export class RoomType {
     id: number;
     hotel: number;
@@ -20,6 +20,15 @@ export class RoomTypeAvance {
 export class RoomTypeRoom {
     id: number;
     rooms: Room[];
+    hotel: number;
+    type_name: string;
+    type_desc: string;
+    type_price: number;
+}
+
+export class RoomTypeReservation {
+    id: number;
+    rooms: RoomReserv[];
     hotel: number;
     type_name: string;
     type_desc: string;
