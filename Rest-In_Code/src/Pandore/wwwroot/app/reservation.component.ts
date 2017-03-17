@@ -130,7 +130,6 @@ export class ReservationComponent {
                             if (this.reservs[a].roomtypes[b].rooms[c].reserv[d].client == this.us) {
 
                                 this.ct = this.ct + 1;
-                                alert(this.ct);
                                 this.test.id = this.ct;
                                 this.test.hotel = this.reservs[a].hotel_name;
                                 this.test.debut = this.reservs[a].roomtypes[b].rooms[c].reserv[d].reserv_start;

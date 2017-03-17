@@ -9,45 +9,39 @@ export class UtilisateurService {
     constructor(
         private http: Http) { }
 
-    
+    ip: string = "http://172.16.16.130:8000/";
+ //   ip: string = "http://127.0.0.1:8000/";
+  //  ip: string = "";
 
     verificationConnexion(mail: string, password: string) {
-        /*   return this.http.get('http://127.0.0.1:8000/pollsAPI/usersauth/' + mail + '/' + password)
-            .map(data => data.json());*/
 
-     return this.http.get('http://172.16.14.52:8000/pollsAPI/usersauth/' + mail + '/' + password)
+     return this.http.get(this.ip + 'pollsAPI/usersauth/' + mail + '/' + password)
             .map(data => data.json());
     }
 
     verificationMailExist(mail: string) {
-       /* return this.http.get('http://127.0.0.1:8000/pollsAPI/verifmail/' + mail)
-            .map(data => data.json());*/
 
-        return this.http.get('http://172.16.14.52:8000/pollsAPI/verifmail/' + mail)
+        return this.http.get(this.ip + 'pollsAPI/verifmail/' + mail)
             .map(data => data.json());
     }
 
     ajouterUtilisateur(name: string, mail: string, password: string) {
-       /* return this.http.get('http://127.0.0.1:8000/pollsAPI/ajoutuser/' + name + '/' + mail + '/' + password)
-            .map(data => data.json());*/
 
-        return this.http.get('http://172.16.14.52:8000/pollsAPI/ajoutuser/' + name + '/' + mail + '/' + password)
+
+        return this.http.get(this.ip + 'pollsAPI/ajoutuser/' + name + '/' + mail + '/' + password)
             .map(data => data.json());
     }
 
     getUserType(id: number) {
-       /* return this.http.get('http://127.0.0.1:8000/pollsAPI/usertype/' + id)
-            .map(data => data.json());*/
 
-        return this.http.get('http://172.16.14.52:8000/pollsAPI/usertype/' + id)
+
+        return this.http.get(this.ip + 'pollsAPI/usertype/' + id)
             .map(data => data.json());
     }
 
     getUserH(id: number) {
-      /*   return this.http.get('http://127.0.0.1:8000/pollsAPI/userh/' + id)
-            .map(data => data.json());*/
 
-       return this.http.get('http://172.16.14.52:8000/pollsAPI/userh/' + id)
+        return this.http.get(this.ip + 'pollsAPI/userh/' + id)
             .map(data => data.json());
     }
     
